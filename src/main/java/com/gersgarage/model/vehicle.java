@@ -1,8 +1,7 @@
 package com.gersgarage.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table (name= "vehicle")
@@ -17,13 +16,12 @@ public class vehicle {
 	@Column(name= "colour")
 	private String colour;
 	
+	@Id
 	@Column(name= "reg")
 	private String reg;
 	
-	//@ManyToOne
-	//@JoinColumn(name= "email")
-	//@JoinColumn(name= "vehicle_owner_fkey")
-	@Column(name= "owner")
+	@ManyToOne
+	@JoinColumn(name= "email")
 	private customer owner;
 	
 	
