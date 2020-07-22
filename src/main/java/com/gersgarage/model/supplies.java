@@ -2,6 +2,7 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "supplies")
 public class supplies {
@@ -9,23 +10,23 @@ public class supplies {
 	// pk
 	@Id
 	@Column(name = "supplies_id")
-	private int supplies_id;
+	private Long supplies_id;
 
 	@Column(name = "supplies_name")
 	private String supplies_name;
 
 	@Column(name = "quantity")
-	private int quantity;
+	private Long quantity;
 
 	@Column(name = "price")
-	private int price;
+	private Long price;
 
 	public supplies() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public supplies(int supplies_id, String supplies_name, int quantity, int price) {
+	public supplies(Long supplies_id, String supplies_name, Long quantity, Long price) {
 		super();
 		this.supplies_id = supplies_id;
 		this.supplies_name = supplies_name;
@@ -33,11 +34,11 @@ public class supplies {
 		this.price = price;
 	}
 
-	public int getSupplies_id() {
+	public Long getSupplies_id() {
 		return supplies_id;
 	}
 
-	public void setSupplies_id(int supplies_id) {
+	public void setSupplies_id(Long supplies_id) {
 		this.supplies_id = supplies_id;
 	}
 
@@ -49,19 +50,19 @@ public class supplies {
 		this.supplies_name = supplies_name;
 	}
 
-	public int getQuantity() {
+	public Long getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
 
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 

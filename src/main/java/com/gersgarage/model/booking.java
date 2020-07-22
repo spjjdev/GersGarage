@@ -9,7 +9,7 @@ public class booking {
 	// foreign key references mechanic (id)
 	@OneToOne
 	@JoinColumn(name = "mechanic_id")
-	private int mechanic;
+	private Long mechanic;
 
 	// foreign key references vehicle (id)
 	@OneToOne
@@ -22,19 +22,19 @@ public class booking {
 	// pk
 	@Id
 	@Column(name = "booking_id")
-	private int booking_id;
+	private Long booking_id;
 
 	// foreign key references booking_type (id)
 	@OneToOne
 	@JoinColumn(name = "booking_type_id")
-	private int type;
+	private Long type;
 
 	public booking() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public booking(int mechanic, String vehicle, String timedate, int booking_id, int type) {
+	public booking(Long mechanic, String vehicle, String timedate, Long booking_id, Long type) {
 		super();
 		this.mechanic = mechanic;
 		this.vehicle = vehicle;
@@ -43,11 +43,11 @@ public class booking {
 		this.type = type;
 	}
 
-	public int getMechanic() {
+	public Long getMechanic() {
 		return mechanic;
 	}
 
-	public void setMechanic(int mechanic) {
+	public void setMechanic(Long mechanic) {
 		this.mechanic = mechanic;
 	}
 
@@ -67,19 +67,19 @@ public class booking {
 		this.timedate = timedate;
 	}
 
-	public int getBooking_id() {
+	public Long getBooking_id() {
 		return booking_id;
 	}
 
-	public void setBooking_id(int booking_id) {
+	public void setBooking_id(Long booking_id) {
 		this.booking_id = booking_id;
 	}
 
-	public int getType() {
+	public Long getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(Long type) {
 		this.type = type;
 	}
 

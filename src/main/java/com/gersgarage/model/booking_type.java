@@ -8,13 +8,13 @@ public class booking_type {
 
 	@Id
 	@Column(name = "booking_type_id")
-	private int booking_type_id;
+	private Long booking_type_id;
 
 	@Column(name = "type")
 	private String type;
 
 	@Column(name = "price")
-	private int price;
+	private Long price;
 
 	@Column(name = "description")
 	private String description;
@@ -24,7 +24,7 @@ public class booking_type {
 		// TODO Auto-generated constructor stub
 	}
 
-	public booking_type(int booking_type_id, String type, int price, String description) {
+	public booking_type(Long booking_type_id, String type, Long price, String description) {
 		super();
 		this.booking_type_id = booking_type_id;
 		this.type = type;
@@ -32,11 +32,11 @@ public class booking_type {
 		this.description = description;
 	}
 
-	public int getBooking_type_id() {
+	public Long getBooking_type_id() {
 		return booking_type_id;
 	}
 
-	public void setBooking_type_id(int booking_type_id) {
+	public void setBooking_type_id(Long booking_type_id) {
 		this.booking_type_id = booking_type_id;
 	}
 
@@ -48,11 +48,11 @@ public class booking_type {
 		this.type = type;
 	}
 
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 

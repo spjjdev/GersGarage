@@ -15,7 +15,7 @@ public class mechanic {
 	@Id
 	@Column(name = "mechanic_id")
 	// @GeneratedValue(strategy=GenerationType.AUTO)
-	private int mechanic_id;
+	private Long mechanic_id;
 
 	@Column(name = "email")
 	private String email;
@@ -31,7 +31,7 @@ public class mechanic {
 		// TODO Auto-generated constructor stub
 	}
 
-	public mechanic(String first_name, String last_name, int mehcanic_id, String email, String phone_num,
+	public mechanic(String first_name, String last_name, Long mehcanic_id, String email, String phone_num,
 			String address) {
 		super();
 		this.first_name = first_name;
@@ -58,11 +58,11 @@ public class mechanic {
 		this.last_name = last_name;
 	}
 
-	public int getMechanic_id() {
+	public Long getMechanic_id() {
 		return mechanic_id;
 	}
 
-	public void setMechanic_id(int mechanic_id) {
+	public void setMechanic_id(Long mechanic_id) {
 		this.mechanic_id = mechanic_id;
 	}
 
