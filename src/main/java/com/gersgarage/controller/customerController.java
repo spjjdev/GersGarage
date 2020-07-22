@@ -17,6 +17,11 @@ public class customerController {
 	
 	private customerRepository customerRepository;
 	
+	@GetMapping("hello")
+	public String hello() {
+		return "Hello World";
+	}
+	
 	
 	//get customers
 	@GetMapping("/customers")
