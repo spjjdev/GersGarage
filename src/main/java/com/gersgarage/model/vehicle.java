@@ -2,6 +2,8 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Entity
 @Table (name= "vehicle")
@@ -25,11 +27,12 @@ public class vehicle {
 	private customer owner;
 	
 	
-	
+//	@Autowired
 	public vehicle() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
+	@Autowired
 	public vehicle(String make, String model, String colour, String reg, customer owner) {
 		super();
 		this.make = make;

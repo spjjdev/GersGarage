@@ -2,6 +2,8 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name = "booking")
 public class booking {
@@ -9,12 +11,14 @@ public class booking {
 	// foreign key references mechanic (id)
 	@OneToOne
 	@JoinColumn(name = "mechanic_id")
-	private Long mechanic;
+//	@JoinTable(name = "mechanic", joinColumns = @JoinColumn(name = "mechanic_id"))
+	private mechanic mechanic;
 
 	// foreign key references vehicle (id)
 	@OneToOne
 	@JoinColumn(name = "reg")
-	private String vehicle;
+//	@JoinTable(name = "vehicle", joinColumns = @JoinColumn(name = "reg"))
+	private vehicle vehicle;
 
 	@Column(name = "")
 	private String timedate;
@@ -27,14 +31,16 @@ public class booking {
 	// foreign key references booking_type (id)
 	@OneToOne
 	@JoinColumn(name = "booking_type_id")
-	private Long type;
+//	@JoinTable(name = "booking_type", joinColumns = @JoinColumn(name = "booking_type_id"))
+	private booking_type type;
 
+	@Autowired
 	public booking() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public booking(Long mechanic, String vehicle, String timedate, Long booking_id, Long type) {
+	@Autowired
+	public booking(mechanic mechanic, vehicle vehicle, String timedate, Long booking_id, booking_type type) {
 		super();
 		this.mechanic = mechanic;
 		this.vehicle = vehicle;
@@ -43,19 +49,19 @@ public class booking {
 		this.type = type;
 	}
 
-	public Long getMechanic() {
+	public mechanic getMechanic() {
 		return mechanic;
 	}
 
-	public void setMechanic(Long mechanic) {
+	public void setMechanic(mechanic mechanic) {
 		this.mechanic = mechanic;
 	}
 
-	public String getVehicle() {
+	public vehicle getVehicle() {
 		return vehicle;
 	}
 
-	public void setVehicle(String vehicle) {
+	public void setVehicle(vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 
@@ -75,11 +81,11 @@ public class booking {
 		this.booking_id = booking_id;
 	}
 
-	public Long getType() {
+	public booking_type getType() {
 		return type;
 	}
 
-	public void setType(Long type) {
+	public void setType(booking_type type) {
 		this.type = type;
 	}
 

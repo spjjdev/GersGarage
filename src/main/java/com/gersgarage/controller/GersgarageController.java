@@ -11,19 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gersgarage.gersgarage.ResourceNotFoundException;
-import com.gersgarage.model.booking;
-import com.gersgarage.model.customer;
-import com.gersgarage.model.vehicle;
-import com.gersgarage.repository.customerRepository;
-import com.gersgarage.repository.vehicleRepository;
+import com.gersgarage.model.*;
+import com.gersgarage.repository.*;
 
 @RestController
 @RequestMapping("/api")//custom naming
 public class GersgarageController {
 	
 	private customerRepository customerRepository;
-	private com.gersgarage.repository.bookingRepository bookingRepository;
 	private vehicleRepository vehicleRepository;
+	private bookingRepository bookingRepository;
+	private bookingTypeRepository bookingTypeRepository;
+	private invoiceRepository invoiceRepository;
+	private mechanicRepository mechanicRepository;
+	private suppliesRepository suppliesRepository;
+	
 	
 	@GetMapping("hello")
 	public String hello() {
@@ -34,7 +36,8 @@ public class GersgarageController {
 	//get customers
 	@GetMapping("/customers")
 	public List<customer> getAllCustomers(){
-		return this.customerRepository.findAll();
+		List<customer> allCustomers = this.customerRepository.findAll();
+		return allCustomers;
 		}
 	
 	//get customers by id
@@ -71,13 +74,13 @@ public class GersgarageController {
 	
 	
 	//booking POST customer details with vechicle details
-	@PostMapping("/booking")
-	public void addBooking (@RequestBody booking booking) {
-		bookingRepository.save(booking);
-	}
-	
+////	@PostMapping("/booking")
+////	public void addBooking (@RequestBody booking booking) {
+////		bookingRepository.save(booking);
+////	}
+//	
 	//assign mechanic to booking, ger PUT info into booking
-	@PutMapping("assign-mehcanic")
+	@PutMapping("assign-mechanic")
 	public void assignMechanic() {
 		//retrieve a customer booking and put a mechanic in the mechanic attribute
 	}
@@ -86,8 +89,36 @@ public class GersgarageController {
 	
 	//invoice creation from ger, add booking and supplies needed, PUT?
 	
+	@GetMapping("/bookingType")
+	public List<booking_type> getBookingType(){
+		List<booking_type> allBookingType = this.bookingTypeRepository.findAll();
+		return allBookingType;
+		}
+	
+	@GetMapping("/invoices")
+	public List<invoice> getAllInvoices(){
+		List<invoice> allInvoices = this.invoiceRepository.findAll();
+		return allInvoices;
+		}
 	
 	
 	
+	@GetMapping("/mechanics")
+	public List<mechanic> getMechanics(){
+		List<mechanic> allMechanics = this.mechanicRepository.findAll();
+		return allMechanics;
+		}
+	
+	@GetMapping("/supplies")
+	public List<supplies> getSupplies(){
+		List<supplies> allSupplies = this.suppliesRepository.findAll();
+		return allSupplies;
+		}
+
+	@GetMapping("/vehicles")
+	public List<vehicle> getVehicle(){
+		List<vehicle> allVehicles = this.vehicleRepository.findAll();
+		return allVehicles;
+		}
 
 }

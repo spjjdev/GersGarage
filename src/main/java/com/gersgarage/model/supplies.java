@@ -1,6 +1,9 @@
 package com.gersgarage.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
+
 
 
 @Entity
@@ -21,17 +24,22 @@ public class supplies {
 	@Column(name = "price")
 	private Long price;
 
+	@ManyToMany(mappedBy = "invoiceSupplies")
+	Set<invoice> suppliesInvoice;
+
+	// @Autowired
 	public supplies() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public supplies(Long supplies_id, String supplies_name, Long quantity, Long price) {
+	public supplies(Long supplies_id, String supplies_name, Long quantity, Long price,
+			Set<com.gersgarage.model.invoice> suppliesInvoice) {
 		super();
 		this.supplies_id = supplies_id;
 		this.supplies_name = supplies_name;
 		this.quantity = quantity;
 		this.price = price;
+		this.suppliesInvoice = suppliesInvoice;
 	}
 
 	public Long getSupplies_id() {
@@ -64,6 +72,14 @@ public class supplies {
 
 	public void setPrice(Long price) {
 		this.price = price;
+	}
+
+	public Set<invoice> getSuppliesInvoice() {
+		return suppliesInvoice;
+	}
+
+	public void setSuppliesInvoice(Set<invoice> suppliesInvoice) {
+		this.suppliesInvoice = suppliesInvoice;
 	}
 
 }

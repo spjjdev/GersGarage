@@ -2,6 +2,8 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name = "booking_type")
 public class booking_type {
@@ -19,11 +21,12 @@ public class booking_type {
 	@Column(name = "description")
 	private String description;
 
+//	@Autowired
 	public booking_type() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+//	@Autowired
 	public booking_type(Long booking_type_id, String type, Long price, String description) {
 		super();
 		this.booking_type_id = booking_type_id;

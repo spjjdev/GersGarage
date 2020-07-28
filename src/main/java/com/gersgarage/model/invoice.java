@@ -1,5 +1,7 @@
 package com.gersgarage.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,26 +12,29 @@ public class invoice {
 	@Id
 	@Column(name = "invoice_id")
 	private Long invoice_id;
-	
-	// fk to supplies(id)
-	@OneToMany
-	@JoinColumn(name = "supplies_id")
-	private Long supplies;
-	
+
+	@ManyToMany
+	@JoinTable(name = "invoice_supplies", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "supplies_id"))
+	Set<supplies> invoiceSupplies;
+
+//	// fk to supplies(id)
+//	@OneToMany
+//	@JoinColumn(name = "supplies_id")
+//	private Long supplies;
+
 	// fk to booking
 	@OneToOne
 	@JoinColumn(name = "booking_id")
-	private Long booking;
+	private booking booking;
 
 	public invoice() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public invoice(Long invoice_id, Long supplies, Long booking) {
+	public invoice(Long invoice_id, Set<supplies> invoiceSupplies, booking booking) {
 		super();
 		this.invoice_id = invoice_id;
-		this.supplies = supplies;
+		this.invoiceSupplies = invoiceSupplies;
 		this.booking = booking;
 	}
 
@@ -41,20 +46,20 @@ public class invoice {
 		this.invoice_id = invoice_id;
 	}
 
-	public Long getSupplies() {
-		return supplies;
+	public Set<supplies> getInvoiceSupplies() {
+		return invoiceSupplies;
 	}
 
-	public void setSupplies(Long supplies) {
-		this.supplies = supplies;
+	public void setInvoiceSupplies(Set<supplies> invoiceSupplies) {
+		this.invoiceSupplies = invoiceSupplies;
 	}
 
-	public Long getBooking() {
+	public booking getBooking() {
 		return booking;
 	}
 
-	public void setBooking(Long booking_id) {
-		this.booking = booking_id;
+	public void setBooking(booking booking) {
+		this.booking = booking;
 	}
 
 }
