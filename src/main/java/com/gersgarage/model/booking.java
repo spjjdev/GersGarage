@@ -2,7 +2,6 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "booking")
@@ -11,13 +10,11 @@ public class booking {
 	// foreign key references mechanic (id)
 	@OneToOne
 	@JoinColumn(name = "mechanic_id")
-//	@JoinTable(name = "mechanic", joinColumns = @JoinColumn(name = "mechanic_id"))
 	private mechanic mechanic;
 
 	// foreign key references vehicle (id)
 	@OneToOne
 	@JoinColumn(name = "reg")
-//	@JoinTable(name = "vehicle", joinColumns = @JoinColumn(name = "reg"))
 	private vehicle vehicle;
 
 	@Column(name = "")
@@ -31,15 +28,12 @@ public class booking {
 	// foreign key references booking_type (id)
 	@OneToOne
 	@JoinColumn(name = "booking_type_id")
-//	@JoinTable(name = "booking_type", joinColumns = @JoinColumn(name = "booking_type_id"))
 	private booking_type type;
 
-	@Autowired
 	public booking() {
 		super();
 	}
 
-	@Autowired
 	public booking(mechanic mechanic, vehicle vehicle, String timedate, Long booking_id, booking_type type) {
 		super();
 		this.mechanic = mechanic;

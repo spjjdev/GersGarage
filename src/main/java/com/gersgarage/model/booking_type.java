@@ -21,12 +21,12 @@ public class booking_type {
 	@Column(name = "description")
 	private String description;
 
-//	@Autowired
+
 	public booking_type() {
 		super();
 	}
 
-//	@Autowired
+
 	public booking_type(Long booking_type_id, String type, Long price, String description) {
 		super();
 		this.booking_type_id = booking_type_id;

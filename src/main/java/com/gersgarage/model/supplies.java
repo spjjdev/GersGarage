@@ -4,8 +4,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name = "supplies")
 public class supplies {
@@ -27,7 +25,6 @@ public class supplies {
 	@ManyToMany(mappedBy = "invoiceSupplies")
 	Set<invoice> suppliesInvoice;
 
-	// @Autowired
 	public supplies() {
 		super();
 	}

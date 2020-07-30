@@ -2,8 +2,6 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Entity
 @Table(name = "customer")
 public class customer {
@@ -24,12 +22,10 @@ public class customer {
 	@Column(name = "email")
 	private String email;
 
-//	@Autowired
 	public customer() {
 		super();
 	}
 
-	@Autowired
 	public customer(String first_name, String last_name, String password, String phone_num, String email) {
 		super();
 		this.first_name = first_name;
