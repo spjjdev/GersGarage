@@ -15,8 +15,8 @@ class App extends Component {
       <Router>
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <a href="/tutorials" className="navbar-brand">
-              bezKoder
+            <a href="/customers" className="navbar-brand">
+              Ger's Garage
             </a>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
@@ -29,18 +29,15 @@ class App extends Component {
                   Add
                 </Link>
               </li>
+
             </div>
           </nav>
 
           <div className="container mt-3">
             <Switch>
-              <Route
-                exact
-                path={["/", "/customers"]}
-                component={CustomerList}
-              />
-              <Route exact path="/add" component={AddCustomer} />
-              <Route path="/tutorials/:id" component={Customer} />
+              <Route exact path={["/", "/customers"]} component={CustomerList}/>
+              <Route exact path="/add-customer" component={AddCustomer} />
+              <Route path="/customer/{email}" component={Customer} />
             </Switch>
           </div>
         </div>

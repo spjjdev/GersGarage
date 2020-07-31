@@ -7,20 +7,20 @@ class CustomerDataService {
     return http.get("/customers");
   }
 
-  get(id) {
-    return http.get(`/customers/${id}`);
+  get(email) {
+    return http.get(`/customers/${email}`);
   }
 
   create(data) {
     return http.post("/customers", data);
   }
 
-  update(id, data) {
-    return http.put(`/customers/${id}`, data);
+  update(email, data) {
+    return http.put(`/customers/${email}`, data);
   }
 
-  delete(id) {
-    return http.delete(`/customers/${id}`);
+  delete(email) {
+    return http.delete(`/customers/${email}`);
   }
 
   deleteAll() {
