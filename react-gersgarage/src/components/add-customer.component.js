@@ -5,23 +5,28 @@ import CustomerDataService from "../services/customer.service";
 export default class AddCustomer extends Component {
   constructor(props) {
     super(props);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangePhoneNum = this.onChangePhoneNum.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.saveCustomer = this.saveCustomer.bind(this);
     this.newCustomer = this.newCustomer.bind(this);
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      password: "",
-      phoneNum: "",
-      email: "",
+      email: " ",
+      firstName: " ",
+      lastName: " ",
+      password: " ",
+      phoneNum: " ",
+      
     };
   }
-
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value,
+    });
+  }
   onChangeFirstName(e) {
     this.setState({
       firstName: e.target.value,
@@ -42,29 +47,27 @@ export default class AddCustomer extends Component {
       phoneNum: e.target.value,
     });
   }
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
-  }
+
 
   saveCustomer() {
     var data = {
+      email: this.state.email,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       password: this.state.password,
       phoneNum: this.state.phoneNum,
-      email: this.state.email,
+      
     };
 
     CustomerDataService.create(data)
       .then((response) => {
         this.setState({
+          email: response.data.email,
           firstName: response.data.firstName,
           lastName: response.data.lastName,
           password: response.data.password,
           phoneNum: response.data.phoneNum,
-          email: response.data.email,
+          
         });
         console.log(response.data);
       })
@@ -75,11 +78,12 @@ export default class AddCustomer extends Component {
 
   newCustomer() {
     this.setState({
+      email: "",
       firstName: "",
       lastName: "",
       password: "",
       phoneNum: "",
-      email: "",
+     
     });
   }
 

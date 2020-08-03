@@ -2,6 +2,8 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NaturalId;
+
 
 
 
@@ -9,6 +11,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "customer")
 public class customer {
+
+	@Id
+	@NaturalId
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false, name = "email")
+	private String email;
 
 	@Column(name = "first_name")
 	private String first_name;
@@ -23,11 +31,7 @@ public class customer {
 	private String phone_num;
 
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, name = "email")
-	private String email;
-
+	
 	public customer() {
 		super();
 	}

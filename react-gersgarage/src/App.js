@@ -49,6 +49,7 @@ class App extends Component {
               <Route exact path="/add-customer" component={AddCustomer} />
               <Route path="/customer/{email}" component={Customer} />
               <Route path="/bookings" component={Booking} />
+              <Route path="/bookings" component={BookingList} />
             </Switch>
           </div>
         </div>
