@@ -9,7 +9,7 @@ class BookingDataService {
   }
 
   get(booking_id) {
-    return http.get(`/customers/${booking_id}`);
+    return http.get(`/bookings/${booking_id}`);
   }
 }
 export default new BookingDataService();

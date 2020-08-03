@@ -102,8 +102,8 @@ export default class AddCustomer extends Component {
                 className="form-control"
                 id="firstName"
                 required
-                value={this.state.title}
-                onChange={this.onChangeTitle}
+                value={this.state.firstName}
+                onChange={this.onChangeFirstName}
                 name="firstName"
               />
             </div>
@@ -115,8 +115,8 @@ export default class AddCustomer extends Component {
                 className="form-control"
                 id="lastName"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={this.state.lastName}
+                onChange={this.onChangeLastName}
                 name="lastName"
               />
             </div>
@@ -127,8 +127,8 @@ export default class AddCustomer extends Component {
                 className="form-control"
                 id="password"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={this.state.password}
+                onChange={this.onChangePassword}
                 name="password"
               />
             </div>
@@ -139,8 +139,8 @@ export default class AddCustomer extends Component {
                 className="form-control"
                 id="phoneNum"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={this.state.phoneNum}
+                onChange={this.onChangePhoneNum}
                 name="phoneNum"
               />
             </div>
@@ -151,8 +151,8 @@ export default class AddCustomer extends Component {
                 className="form-control"
                 id="email"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={this.state.email}
+                onChange={this.onChangeEmail}
                 name="email"
               />
             </div>

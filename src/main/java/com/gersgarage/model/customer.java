@@ -2,6 +2,10 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
+
+
+
+
 @Entity
 @Table(name = "customer")
 public class customer {
@@ -18,8 +22,10 @@ public class customer {
 	@Column(name = "phone_num")
 	private String phone_num;
 
+	
 	@Id
-	@Column(name = "email")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false, name = "email")
 	private String email;
 
 	public customer() {

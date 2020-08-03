@@ -9,8 +9,7 @@ export default class Booking extends Component {
     this.onChangeMechanic = this.onChangeMechanic.bind(this);
     this.onChangeBookingType = this.onChangeBookingType.bind(this);
     this.onChangeVehicle = this.onChangeVehicle.bind(this);
-
-    this.getBooking = this.getBooking.bind(this);
+   this.getBooking = this.getBooking.bind(this);
     this.updateBooking = this.updateBooking.bind(this);
     this.deleteBooking = this.deleteBooking.bind(this);
 
@@ -36,6 +35,18 @@ export default class Booking extends Component {
         bookingId: bookingId,
       },
     }));
+  }
+  getBooking(bookingId) {
+    BookingDataService.get(bookingId)
+      .then(response => {
+        this.setState({
+          currentBooking: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => { 
+        console.log(e);
+      });
   }
   onChangeTimeDate(e) {
     const timeDate = e.target.value;

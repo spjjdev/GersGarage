@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.gersgarage.gersgarage.ResourceNotFoundException;
 import com.gersgarage.model.*;
 import com.gersgarage.repository.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*") 
 @RestController
 @RequestMapping("/api") // custom naming
 public class GersgarageController {
@@ -42,6 +44,7 @@ public class GersgarageController {
 
 	// get customers
 	
+//	@CrossOrigin(origins = "http://localhost:8081/customers")
 	@GetMapping("/customers")
 	public List<customer> getAllCustomers() {
 		List<customer> allCustomers = this.customerRepository.findAll();
@@ -49,6 +52,7 @@ public class GersgarageController {
 	}
 
 	// get customers by id
+//	@CrossOrigin(origins = "http://localhost:8081/customers")
 	@GetMapping("/customers/{email}")
 	public ResponseEntity<customer> getCustomerById(@PathVariable(value = "email") String email)
 			throws ResourceNotFoundException {
@@ -79,6 +83,13 @@ public class GersgarageController {
 	@GetMapping("/bookings")
 	public List<booking> getBookings() {
 		return this.bookingRepository.findAll();
+	}
+	@GetMapping("/bookings/{booking_id}")
+	public ResponseEntity<booking> getBookingById(@PathVariable(value = "booking_id") Long booking_id)
+			throws ResourceNotFoundException {
+		booking booking = bookingRepository.findById(booking_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Booking not found for this ID" + booking_id));
+		return ResponseEntity.ok().body(booking);
 	}
 
 	// booking POST customer details with vechicle details
