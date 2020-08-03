@@ -41,6 +41,7 @@ public class GersgarageController {
 	}
 
 	// get customers
+	
 	@GetMapping("/customers")
 	public List<customer> getAllCustomers() {
 		List<customer> allCustomers = this.customerRepository.findAll();
@@ -57,6 +58,7 @@ public class GersgarageController {
 	}
 
 	// add customer to DB, customer does this on registration
+//	@CrossOrigin(origins = "http://localhost:8081/add-customer")
 	@PostMapping("/add-customer")
 	public String addCustomer(@RequestBody customer customer) {
 		customerRepository.save(customer);

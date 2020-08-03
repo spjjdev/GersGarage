@@ -23,7 +23,7 @@ export default class Customer extends Component {
   }
 
   componentDidMount() {
-    this.getCustomer(this.props.match.params.id);
+    this.getCustomer(this.props.match.params.email);
   }
 
   onChangeEmail(e) {

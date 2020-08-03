@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddCustomer from "./components/add-customer.component";
 import Customer from "./components/customer.component";
 import CustomerList from "./components/customer-list.component";
+import AddCustomer from "./components/add-customer.component";
+import Booking from "./components/booking.component";
+import BookingList from "./components/booking-list.component";
 
 class App extends Component {
   render() {
@@ -25,19 +27,28 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/add"} className="nav-link">
+                <Link to={"/add-customer"} className="nav-link">
                   Add
                 </Link>
               </li>
-
+              <li className="nav-item">
+                <Link to={"/bookings"} className="nav-link">
+                  Bookings
+                </Link>
+              </li>
             </div>
           </nav>
 
           <div className="container mt-3">
             <Switch>
-              <Route exact path={["/", "/customers"]} component={CustomerList}/>
+              <Route
+                exact
+                path={["/", "/customers"]}
+                component={CustomerList}
+              />
               <Route exact path="/add-customer" component={AddCustomer} />
               <Route path="/customer/{email}" component={Customer} />
+              <Route path="/bookings" component={Booking} />
             </Switch>
           </div>
         </div>
