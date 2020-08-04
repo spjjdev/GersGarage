@@ -23,7 +23,7 @@ export default class BookingList extends Component {
     this.retrieveBookings();
   }
 
-  onChangeBookingId(e) {
+  onChangeSearchBookingId(e) {
     const searchBookingId = e.target.value;
 
     this.setState({
@@ -61,7 +61,7 @@ export default class BookingList extends Component {
 
  
 
-  searchBooking() {
+  searchBookingId() {
     BookingDataService.findByBookingId(this.state.searchBookingId)
       .then((response) => {
         this.setState({
@@ -89,7 +89,7 @@ export default class BookingList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by bookingId"
+              placeholder="Search by Booking ID"
               value={searchBookingId}
               onChange={this.onChangeSearchBookingId}
             />
@@ -97,7 +97,7 @@ export default class BookingList extends Component {
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchBookinId}
+                onClick={this.searchBookingId}
               >
                 Search
               </button>
@@ -133,7 +133,7 @@ export default class BookingList extends Component {
               <h4>Booking</h4>
               <div>
                 <label>
-                  <strong>Bookin ID:</strong>
+                  <strong>Booking ID:</strong>
                 </label>{" "}
                 {currentBooking.bookingId}
               </div>
