@@ -15,5 +15,8 @@ class BookingDataService {
   findByBookingId(booking_id) {
     return http.get(`/bookings?bookingId=${booking_id}`);
 }
+create(data) {
+  return http.post("/add-booking", data);
+}
 }
 export default new BookingDataService();

@@ -2,11 +2,15 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "booking")
 public class booking {
 
+	// pk
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "booking_id")
+	private Long booking_id;
 	// foreign key references mechanic (id)
 	@OneToOne
 	@JoinColumn(name = "mechanic_id")
@@ -19,11 +23,6 @@ public class booking {
 
 	@Column(name = "")
 	private String timedate;
-
-	// pk
-	@Id
-	@Column(name = "booking_id")
-	private Long booking_id;
 
 	// foreign key references booking_type (id)
 	@OneToOne

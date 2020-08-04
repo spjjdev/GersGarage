@@ -91,6 +91,11 @@ public class GersgarageController {
 				.orElseThrow(() -> new ResourceNotFoundException("Booking not found for this ID" + booking_id));
 		return ResponseEntity.ok().body(booking);
 	}
+	@PostMapping("/add-booking")
+	public String addBooking(@RequestBody booking booking) {
+		bookingRepository.save(booking);
+		return booking + "is registered to Ger's Garage";
+	}
 
 	// booking POST customer details with vechicle details
 ////	@PostMapping("/booking")

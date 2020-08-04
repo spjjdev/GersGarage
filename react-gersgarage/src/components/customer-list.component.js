@@ -59,8 +59,6 @@ export default class CustomerList extends Component {
     });
   }
 
- 
-
   searchEmail() {
     CustomerDataService.findByEmail(this.state.searchEmail)
       .then((response) => {
@@ -81,6 +79,7 @@ export default class CustomerList extends Component {
       currentCustomer,
       currentIndex,
     } = this.state;
+    console.log(customers);
 
     return (
       <div className="list row">
@@ -123,8 +122,6 @@ export default class CustomerList extends Component {
                 </li>
               ))}
           </ul>
-
-         
         </div>
 
         <div className="col-md-6">
@@ -135,19 +132,19 @@ export default class CustomerList extends Component {
                 <label>
                   <strong>First Name:</strong>
                 </label>{" "}
-                {currentCustomer.firstName}
+                {currentCustomer.first_name}
               </div>
               <div>
                 <label>
                   <strong>Last Name:</strong>
                 </label>{" "}
-                {currentCustomer.lastName}
+                {currentCustomer.last_name}
               </div>
               <div>
                 <label>
                   <strong>Phone Number:</strong>
                 </label>{" "}
-                {currentCustomer.phoneNum}
+                {currentCustomer.phone_num}
               </div>
               <div>
                 <label>
@@ -156,12 +153,7 @@ export default class CustomerList extends Component {
                 {currentCustomer.email}
               </div>
 
-              <Link
-                to={"/customers/" + currentCustomer.email}
-                className="badge badge-warning"
-              >
-                Edit
-              </Link>
+              
             </div>
           ) : (
             <div>

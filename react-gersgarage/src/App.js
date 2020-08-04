@@ -10,6 +10,7 @@ import CustomerList from "./components/customer-list.component";
 import AddCustomer from "./components/add-customer.component";
 import Booking from "./components/booking.component";
 import BookingList from "./components/booking-list.component";
+import AddBooking from "./components/add-booking.component"
 
 class App extends Component {
   render() {
@@ -36,6 +37,36 @@ class App extends Component {
                   Bookings
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to={"/add-booking"} className="nav-link">
+                  Add Booking
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Vehicles
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Add Vehicle
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Supplies
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Add Supply
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Assign Mechanic
+                </Link>
+              </li>
             </div>
           </nav>
 
@@ -50,6 +81,7 @@ class App extends Component {
               <Route path="/customer/{email}" component={Customer} />
               <Route path="/bookings/{booking_id}" component={Booking} />
               <Route path="/bookings" component={BookingList} />
+              <Route path="/add-booking" component={AddBooking} />
             </Switch>
           </div>
         </div>
