@@ -1,41 +1,41 @@
 import React, { Component } from "react";
-import CustomerDataService from "../services/customer.service";
+import SuppliesDataService from "../services/supplies.service";
 import { Link } from "react-router-dom";
 
-export default class CustomerList extends Component {
+export default class SuppliesList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchEmail = this.onChangeSearchEmail.bind(this);
-    this.retrieveCustomers = this.retrieveCustomers.bind(this);
+    this.onChangeSearchSuppliesId = this.onChangeSearchSuppliesId.bind(this);
+    this.retrieveSupplies = this.retrieveSupplies.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveCustomer = this.setActiveCustomer.bind(this);
-    this.searchEmail = this.searchEmail.bind(this);
+    this.setActiveSupply = this.setActiveSupply.bind(this);
+    this.onChangeSearchSuppliesId = this.onChangeSearchSuppliesId.bind(this);
 
     this.state = {
-      customer: [],
-      currentCustomer: null,
+      supplies: [],
+      currentSupply: null,
       currentIndex: -1,
-      searchEmail: "",
+      searchSuppliesId: "",
     };
   }
 
   componentDidMount() {
-    this.retrieveCustomers();
+    this.retrieveSupplies();
   }
 
-  onChangeSearchEmail(e) {
-    const searchEmail = e.target.value;
+  onChangeSearchSuppliesId(e) {
+    const searchSuppliesId = e.target.value;
 
     this.setState({
-      searchEmail: searchEmail,
+      searchSuppliesId: searchSuppliesId,
     });
   }
 
-  retrieveCustomers() {
-    CustomerDataService.getAll()
+  retrieveSupplies() {
+    SuppliesDataService.getAll()
       .then((response) => {
         this.setState({
-          customers: response.data,
+          supplies: response.data,
         });
         console.log(response.data);
       })
@@ -45,25 +45,25 @@ export default class CustomerList extends Component {
   }
 
   refreshList() {
-    this.retrieveCustomers();
+    this.retrieveSupplies();
     this.setState({
-      currentCustomer: null,
+      currentSupply: null,
       currentIndex: -1,
     });
   }
 
-  setActiveCustomer(customer, index) {
+  setActiveSupply(supplies, index) {
     this.setState({
-      currentCustomer: customer,
+      currentSupply: supplies,
       currentIndex: index,
     });
   }
 
-  searchEmail() {
-    CustomerDataService.findByEmail(this.state.searchEmail)
+  searchSuppliesId() {
+    SuppliesDataService.findBySuppliesId(this.state.searchSuppliesId)
       .then((response) => {
         this.setState({
-          customers: response.data,
+         supplies: response.data,
         });
         console.log(response.data);
       })
@@ -74,12 +74,12 @@ export default class CustomerList extends Component {
 
   render() {
     const {
-      searchEmail,
-      customers,
-      currentCustomer,
+      searchSuppliesId,
+      supplies,
+      currentSupply,
       currentIndex,
     } = this.state;
-    console.log(customers);
+    console.log(supplies);
 
     return (
       <div className="list row">
@@ -88,15 +88,15 @@ export default class CustomerList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by email"
-              value={searchEmail}
-              onChange={this.onChangeSearchEmail}
+              placeholder="Search by Supply ID"
+              value={searchSuppliesId}
+              onChange={this.onChangeSearchSuppliesId}
             />
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchEmail}
+                onClick={this.searchSuppliesId}
               >
                 Search
               </button>
@@ -105,52 +105,53 @@ export default class CustomerList extends Component {
         </div>
 
         <div className="col-md-6">
-          <h4>Customer List</h4>
+          <h4>Supplies List</h4>
 
           <ul className="list-group">
-            {customers &&
-              customers.map((customer, index) => (
+            {supplies &&
+            supplies.map((supplies, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveCustomer(customer, index)}
+                  onClick={() => this.setActiveSupply(supplies, index)}
                   key={index}
                 >
-                  {customer.first_name +" "+customer.last_name}
+                  {supplies.supplies_name}
                 </li>
               ))}
           </ul>
         </div>
 
         <div className="col-md-6">
-          {currentCustomer ? (
+          {currentSupply? (
             <div>
-              <h4>Customer</h4>
+              <h4>Supply</h4>
               <div>
                 <label>
-                  <strong>First Name:</strong>
+                  <strong>Supply ID</strong>
                 </label>{" "}
-                {currentCustomer.first_name}
+                {currentSupply.supplies_id}
               </div>
               <div>
                 <label>
-                  <strong>Last Name:</strong>
+                  <strong>Name:</strong>
                 </label>{" "}
-                {currentCustomer.last_name}
+                {currentSupply.supplies_name}
               </div>
               <div>
                 <label>
-                  <strong>Phone Number:</strong>
+                  <strong>Quantity:</strong>
                 </label>{" "}
-                {currentCustomer.phone_num}
+                {currentSupply.quantity}
               </div>
               <div>
                 <label>
-                  <strong>Email:</strong>
+                  <strong>Price €
+                  </strong>
                 </label>{" "}
-                {currentCustomer.email}
+                {currentSupply.price}
               </div>
 
               
@@ -158,7 +159,7 @@ export default class CustomerList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Customer...</p>
+              <p>Please click on a Supply...</p>
             </div>
           )}
         </div>

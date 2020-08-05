@@ -1,41 +1,41 @@
 import React, { Component } from "react";
-import BookingDataService from "../services/booking.service";
+import VehicleDataService from "../services/vehicle.service";
 import { Link } from "react-router-dom";
 
-export default class BookingList extends Component {
+export default class VehicleList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchBookingId = this.onChangeSearchBookingId.bind(this);
-    this.retrieveBookings = this.retrieveBookings.bind(this);
+    this.onChangeSearchReg = this.onChangeSearchReg.bind(this);
+    this.retrieveVehicles = this.retrieveVehicles.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveBooking = this.setActiveBooking.bind(this);
-    this.searchBookingId = this.searchBookingId.bind(this);
+    this.setActiveVehicle = this.setActiveVehicle.bind(this);
+    this.searchReg = this.searchReg.bind(this);
 
     this.state = {
-      booking: [],
-      currentBooking: null,
+      vehicle: [],
+      currentVehicle: null,
       currentIndex: -1,
-      searchBookingId: "",
+      searchReg: "",
     };
   }
 
   componentDidMount() {
-    this.retrieveBookings();
+    this.retrieveVehicles();
   }
 
-  onChangeSearchBookingId(e) {
-    const searchBookingId = e.target.value;
+  onChangeSearchReg(e) {
+    const searchReg = e.target.value;
 
     this.setState({
-      searchBookingId: searchBookingId,
+      searchReg: searchReg,
     });
   }
 
-  retrieveBookings() {
-    BookingDataService.getAll()
+  retrieveVehicles() {
+    VehicleDataService.getAll()
       .then((response) => {
         this.setState({
-          bookings: response.data,
+          vehicles: response.data,
         });
         console.log(response.data);
       })
@@ -45,27 +45,25 @@ export default class BookingList extends Component {
   }
 
   refreshList() {
-    this.retrieveBookings();
+    this.retrieveVehicles();
     this.setState({
-      currentBooking: null,
+      currentVehicle: null,
       currentIndex: -1,
     });
   }
 
-  setActiveBooking(booking, index) {
+  setActiveVehicle(vehicle, index) {
     this.setState({
-      currentBooking: booking,
+      currentVehicle: vehicle,
       currentIndex: index,
     });
   }
 
- 
-
-  searchBookingId() {
-    BookingDataService.findByBookingId(this.state.searchBookingId)
+  searchReg() {
+    VehicleDataService.findByReg(this.state.searchReg)
       .then((response) => {
         this.setState({
-          bookings: response.data,
+          vehicles: response.data,
         });
         console.log(response.data);
       })
@@ -76,11 +74,12 @@ export default class BookingList extends Component {
 
   render() {
     const {
-      searchBookingId,
-      bookings,
-      currentBooking,
+      searchReg,
+      vehicles,
+      currentVehicle,
       currentIndex,
     } = this.state;
+    console.log(vehicles);
 
     return (
       <div className="list row">
@@ -89,15 +88,15 @@ export default class BookingList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by Booking ID"
-              value={searchBookingId}
-              onChange={this.onChangeSearchBookingId}
+              placeholder="Search by Registration"
+              value={searchReg}
+              onChange={this.onChangeSearchReg}
             />
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchBookingId}
+                onClick={this.searchReg}
               >
                 Search
               </button>
@@ -106,74 +105,73 @@ export default class BookingList extends Component {
         </div>
 
         <div className="col-md-6">
-          <h4>Booking List</h4>
+          <h4>Vehicle List</h4>
 
           <ul className="list-group">
-            {bookings &&
-              bookings.map((booking, index) => (
+            {vehicles &&
+              vehicles.map((vehicle, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveBooking(booking, index)}
+                  onClick={() => this.setActiveVehicle(vehicle, index)}
                   key={index}
                 >
-                  Booking No. {booking.booking_id}
+                  {vehicle.reg}
                 </li>
               ))}
           </ul>
-
-         
         </div>
 
         <div className="col-md-6">
-          {currentBooking ? (
+          {currentVehicle ? (
             <div>
-              <h4>Booking</h4>
+              <h4>Vehicle</h4>
               <div>
                 <label>
-                  <strong>Booking ID:</strong>
+                  <strong>Make:</strong>
                 </label>{" "}
-                {currentBooking.booking_id}
+                {currentVehicle.make}
               </div>
               <div>
                 <label>
-                  <strong>Time/Date:</strong>
+                  <strong>Model:</strong>
                 </label>{" "}
-                {currentBooking.timedate}
+                {currentVehicle.model}
               </div>
               <div>
                 <label>
-                  <strong>Mechanic:</strong>
+                  <strong>Colour:</strong>
                 </label>{" "}
+                {currentVehicle.colour}
+              </div>
+              <div>
+                <label>
+                  <strong>Registration:</strong>
+                </label>{" "}
+                {currentVehicle.reg}
+              </div>
+              <div>
+                <label>
+                  <strong>Engine Type:</strong>
+                </label>{" "}
+                {currentVehicle.engine}
+              </div>
               
-                {currentBooking.mechanic.first_name}
-              </div>
               <div>
                 <label>
-                  <strong>Booking Type:</strong>
+                  <strong>Owner:</strong>
                 </label>{" "}
-                {currentBooking.type.description}
-              </div>
-              <div>
-                <label>
-                  <strong>Vehicle:</strong>
-                </label>{" "}
-                {currentBooking.vehicle.reg}
+                {currentVehicle.owner.email}
               </div>
 
-              <Link
-                to={"/bookings/" + currentBooking.bookingId}
-                className="badge badge-warning"
-              >
-                Edit
-              </Link>
+              
             </div>
           ) : (
             <div>
               <br />
-              <p>Please click on a Booking...</p>
+              <p>Please click on a Vehicle...</p>
             </div>
           )}
         </div>

@@ -52,10 +52,10 @@ export default class AddBooking extends Component {
   saveBooking() {
     var data = {
     //   bookingId: this.state.bookingId,
-      timeDate: this.state.timeDate,
-      mechanicId: this.state.mechanicId,
+      timeDate     : this.state.timeDate,
+      mechanicId   : this.state.mechanicId,
       bookingTypeId: this.state.bookingTypeId,
-      reg: this.state.reg,
+      reg          : this.state.reg,
       
     };
 

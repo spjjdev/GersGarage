@@ -10,6 +10,7 @@ public class supplies {
 
 	// pk
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "supplies_id")
 	private Long supplies_id;
 

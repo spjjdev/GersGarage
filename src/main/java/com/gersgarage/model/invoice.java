@@ -10,6 +10,7 @@ public class invoice {
 
 	// pk
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "invoice_id")
 	private Long invoice_id;
 

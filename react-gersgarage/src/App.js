@@ -10,7 +10,10 @@ import CustomerList from "./components/customer-list.component";
 import AddCustomer from "./components/add-customer.component";
 import Booking from "./components/booking.component";
 import BookingList from "./components/booking-list.component";
-import AddBooking from "./components/add-booking.component"
+import AddBooking from "./components/add-booking.component";
+import VehicleList from "./components/vehicle_list.component";
+import AddVehicle from "./components/add-vehicle.component";
+import SuppliesList from "./components/supplies-list.component"
 
 class App extends Component {
   render() {
@@ -43,17 +46,17 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/vehicles"} className="nav-link">
                   Vehicles
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/add-vehicle"} className="nav-link">
                   Add Vehicle
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/supplies"} className="nav-link">
                   Supplies
                 </Link>
               </li>
@@ -65,6 +68,11 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/"} className="nav-link">
                   Assign Mechanic
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/"} className="nav-link">
+                  Mechanics
                 </Link>
               </li>
             </div>
@@ -80,8 +88,11 @@ class App extends Component {
               <Route exact path="/add-customer" component={AddCustomer} />
               <Route path="/customer/{email}" component={Customer} />
               <Route path="/bookings/{booking_id}" component={Booking} />
-              <Route path="/bookings" component={BookingList} />
-              <Route path="/add-booking" component={AddBooking} />
+              <Route exact path={"/bookings"} component={BookingList} />
+              <Route exact path="/add-booking" component={AddBooking} />
+              <Route exact path={"/vehicles"} component={VehicleList} />
+              <Route exact path="/add-vehicle" component={AddVehicle} />
+              <Route exact path={"/supplies"} component={SuppliesList} />
             </Switch>
           </div>
         </div>

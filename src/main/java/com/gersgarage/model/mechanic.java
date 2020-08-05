@@ -14,7 +14,7 @@ public class mechanic {
 
 	@Id
 	@Column(name = "mechanic_id")
-//	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long mechanic_id;
 
 	@Column(name = "email")
