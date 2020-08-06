@@ -135,8 +135,15 @@ public class GersgarageController {
 	public List<supplies> getSupplies() {
 		List<supplies> allSupplies = this.suppliesRepository.findAll();
 		return allSupplies;
+		
 	}
 
+	@PostMapping("/add-supply")
+	public String addSupply(@RequestBody supplies supplies) {
+		suppliesRepository.save(supplies);
+		return supplies + "is added  to supply list";
+	}
+	
 	@GetMapping("/vehicles")
 	public List<vehicle> getVehicle() {
 		List<vehicle> allVehicles = this.vehicleRepository.findAll();

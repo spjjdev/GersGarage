@@ -10,7 +10,7 @@ export default class AddVehicle extends Component {
     this.onChangeColour = this.onChangeColour.bind(this);
     this.onChangeReg = this.onChangeReg.bind(this);
     this.onChangeOwner = this.onChangeOwner.bind(this);
-    this.onChangeEngineType = this.onChangeEngineType.bind(this);
+    this.onChangeEngine = this.onChangeEngine.bind(this);
     this.saveVehicle = this.saveVehicle.bind(this);
     this.newVehicle = this.newVehicle.bind(this);
 
@@ -20,13 +20,15 @@ export default class AddVehicle extends Component {
       colour: " ",
       reg: " ",
       owner: " ",
-      engineType: " ",
+      engine: " ",
+      submitted: false,
     };
   }
   onChangeMake(e) {
     this.setState({
       make: e.target.value,
     });
+    console.log("changing make");
   }
   onChangeModel(e) {
     this.setState({
@@ -48,7 +50,7 @@ export default class AddVehicle extends Component {
       owner: e.target.value,
     });
   }
-  onChangeEngineType(e) {
+  onChangeEngine(e) {
     this.setState({
       engineType: e.target.value,
     });
@@ -60,9 +62,10 @@ export default class AddVehicle extends Component {
       model: this.state.model,
       colour: this.state.colour,
       reg: this.state.reg,
-      owner: this.state.owner,
-      engineType: this.state.engineType
+      owner: { email: this.state.owner },
+      engine: this.state.engine,
     };
+    console.log("hello");
 
     VehicleDataService.create(data)
       .then((response) => {
@@ -71,10 +74,11 @@ export default class AddVehicle extends Component {
           model: response.data.model,
           colour: response.data.colour,
           reg: response.data.reg,
-          owner: response.data.owner,
-          engineType: response.data.engineType
+          owner: response.data.owner.email,
+          engineType: response.data.engine,
+          submitted: true
         });
-        console.log(response.data);
+        
       })
       .catch((e) => {
         console.log(e);
@@ -82,19 +86,20 @@ export default class AddVehicle extends Component {
   }
 
   newVehicle() {
-    this.state ({
-        make: " ",
-        model: " ",
-        colour: " ",
-        reg: " ",
-        owner: " ",
-        engineType: " ",
+    this.state({
+      make: " ",
+      model: " ",
+      colour: " ",
+      reg: " ",
+      owner: " ",
+      engine: " ",
     });
   }
 
   render() {
     return (
       <div className="submit-form">
+        {/* submitted doesnt exist */}
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
@@ -154,15 +159,15 @@ export default class AddVehicle extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="engineType">Engine Type</label>
+              <label htmlFor="engine">Engine Type</label>
               <input
                 type="text"
                 className="form-control"
-                id="engineType"
+                id="engine"
                 required
-                value={this.state.engineType}
-                onChange={this.onChangeEngineType}
-                name="engineType"
+                value={this.state.engine}
+                onChange={this.onChangeEngine}
+                name="engine"
               />
             </div>
             <div className="form-group">
@@ -172,7 +177,7 @@ export default class AddVehicle extends Component {
                 className="form-control"
                 id="owner"
                 required
-                value={this.state.owner}
+                value={this.state.owner.email}
                 onChange={this.onChangeOwner}
                 name="owner"
               />

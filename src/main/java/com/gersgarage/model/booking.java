@@ -21,7 +21,7 @@ public class booking {
 	@JoinColumn(name = "reg")
 	private vehicle vehicle;
 
-	@Column(name = "")
+	@Column(name = "timedate")
 	private String timedate;
 
 	// foreign key references booking_type (id)

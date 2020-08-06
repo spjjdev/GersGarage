@@ -6,68 +6,64 @@ export default class AddBooking extends Component {
   constructor(props) {
     super(props);
     // this.onChangeBookingId = this.onChangeBookingId.bind(this);
-    this.onChangeTimeDate = this.onChangeTimeDate.bind(this);
-    this.onChangeMechanicId = this.onChangeMechanicId.bind(this);
-    this.onChangeBookingTypeId = this.onChangeBookingTypeId.bind(this);
-    this.onChangeReg = this.onChangeReg.bind(this);
+    this.onChangeTimedate = this.onChangeTimedate.bind(this);
+    this.onChangeMechanic = this.onChangeMechanic.bind(this);
+    this.onChangeType = this.onChangeType.bind(this);
+    this.onChangeVehicle = this.onChangeVehicle.bind(this);
     this.saveBooking = this.saveBooking.bind(this);
     this.newBooking = this.newBooking.bind(this);
 
     this.state = {
-    //   bookingId: " ",
-      timeDate: " ",
-      mechanicId: " ",
-      bookingTypeId: " ",
-      reg: " ",
-      
+      //   bookingId: " ",
+      timedate: " ",
+      mechanic: " ",
+      type: " ",
+      vehicle: " ",
     };
   }
-//   onChangeBookingId(e) {
-//     this.setState({
-//       bookingId: e.target.value,
-//     });
-//   }
-  onChangeTimeDate(e) {
+  //   onChangeBookingId(e) {
+  //     this.setState({
+  //       bookingId: e.target.value,
+  //     });
+  //   }
+  onChangeTimedate(e) {
     this.setState({
-      timeDate: e.target.value,
+      timedate: e.target.value,
     });
   }
-  onChangeMechanicId(e) {
+  onChangeMechanic(e) {
     this.setState({
-      mechanicId: e.target.value,
+      mechanic: e.target.value,
     });
   }
-  onChangeBookingTypeId(e) {
+  onChangeType(e) {
     this.setState({
-      bookingTypeId: e.target.value,
+      type: e.target.value,
     });
   }
-  onChangeReg(e) {
+  onChangeVehicle(e) {
     this.setState({
-      reg: e.target.value,
+      vehicle: e.target.value,
     });
   }
-
 
   saveBooking() {
     var data = {
-    //   bookingId: this.state.bookingId,
-      timeDate     : this.state.timeDate,
-      mechanicId   : this.state.mechanicId,
-      bookingTypeId: this.state.bookingTypeId,
-      reg          : this.state.reg,
-      
+      //   bookingId: this.state.bookingId,
+      timedate: this.state.timedate,
+      mechanic: { mechanic_id: this.state.mechanic },
+      type: { booking_type_id: this.state.type },
+      vehicle: { reg: this.state.vehicle },
     };
 
     BookingDataService.create(data)
       .then((response) => {
         this.setState({
-        //   bookingId: response.data.bookingId,
-          timeDate: response.data.timeDate,
-          mechanicId: response.data.mechanicId,
-          bookingTypeId: response.data.bookingTypeId,
-          reg: response.data.reg,
-          
+          //   bookingId: response.data.bookingId,
+          timedate: response.data.timedate,
+          mechanic: response.data.mechanic.mechanic_id,
+          type: response.data.type.booking_type_id,
+          vehicle: response.data.vehicle.reg,
         });
         console.log(response.data);
       })
@@ -78,12 +74,11 @@ export default class AddBooking extends Component {
 
   newBooking() {
     this.setState({
-    //   bookingId: "",
-      timeDate: "",
-      bookingTypeId: "",
-      mechanicId: "",
-      reg: "",
-     
+      //   bookingId: "",
+      timedate: "",
+      type: "",
+      mechanic: "",
+      vehicle: "",
     });
   }
 
@@ -119,8 +114,8 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="timedate"
                 required
-                value={this.state.timeDate}
-                onChange={this.onChangeTimeDate}
+                value={this.state.timedate}
+                onChange={this.onChangeTimedate}
                 name="timedate"
               />
             </div>
@@ -131,8 +126,8 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="mechanic_id"
                 required
-                value={this.state.mechanicId}
-                onChange={this.onChangeMechanicId}
+                value={this.state.mechanic.mechanic_id}
+                onChange={this.onChangeMechanic}
                 name="timedate"
               />
             </div>
@@ -143,8 +138,8 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="booking_type_id"
                 required
-                value={this.state.bookingTypeId}
-                onChange={this.onChangeBookingTypeId}
+                value={this.state.type.booking_type_id}
+                onChange={this.onChangeType}
                 name="booking_type_id"
               />
             </div>
@@ -155,8 +150,8 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="reg"
                 required
-                value={this.state.reg}
-                onChange={this.onChangeReg}
+                value={this.state.vehicle.reg}
+                onChange={this.onChangeVehicle}
                 name="reg"
               />
             </div>

@@ -14,6 +14,8 @@ import AddBooking from "./components/add-booking.component";
 import VehicleList from "./components/vehicle_list.component";
 import AddVehicle from "./components/add-vehicle.component";
 import SuppliesList from "./components/supplies-list.component"
+import AddSupply from "./components/add-supply.component"
+import MechanicList from "./components/mechanic-list.component"
 
 class App extends Component {
   render() {
@@ -61,7 +63,7 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/add-supply"} className="nav-link">
                   Add Supply
                 </Link>
               </li>
@@ -71,7 +73,7 @@ class App extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/mechanics"} className="nav-link">
                   Mechanics
                 </Link>
               </li>
@@ -93,6 +95,8 @@ class App extends Component {
               <Route exact path={"/vehicles"} component={VehicleList} />
               <Route exact path="/add-vehicle" component={AddVehicle} />
               <Route exact path={"/supplies"} component={SuppliesList} />
+              <Route exact path="/add-supply" component={AddSupply} />
+              <Route exact path={"/mechanics"} component={MechanicList} />
             </Switch>
           </div>
         </div>

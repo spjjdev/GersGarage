@@ -15,11 +15,10 @@ export default class AddCustomer extends Component {
 
     this.state = {
       email: " ",
-      firstName: " ",
-      lastName: " ",
+      first_name: " ",
+      last_name: " ",
       password: " ",
-      phoneNum: " ",
-      
+      phone_num: " ",
     };
   }
   onChangeEmail(e) {
@@ -29,12 +28,12 @@ export default class AddCustomer extends Component {
   }
   onChangeFirstName(e) {
     this.setState({
-      firstName: e.target.value,
+      first_name: e.target.value,
     });
   }
   onChangeLastName(e) {
     this.setState({
-      lastName: e.target.value,
+      last_name: e.target.value,
     });
   }
   onChangePassword(e) {
@@ -44,30 +43,27 @@ export default class AddCustomer extends Component {
   }
   onChangePhoneNum(e) {
     this.setState({
-      phoneNum: e.target.value,
+      phone_num: e.target.value,
     });
   }
-
 
   saveCustomer() {
     var data = {
       email: this.state.email,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
       password: this.state.password,
-      phoneNum: this.state.phoneNum,
-      
+      phone_num: this.state.phone_num,
     };
 
     CustomerDataService.create(data)
       .then((response) => {
         this.setState({
           email: response.data.email,
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
+          first_name: response.data.first_name,
+          last_name: response.data.last_name,
           password: response.data.password,
-          phoneNum: response.data.phoneNum,
-          
+          phone_num: response.data.phone_num,
         });
         console.log(response.data);
       })
@@ -79,11 +75,10 @@ export default class AddCustomer extends Component {
   newCustomer() {
     this.setState({
       email: "",
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       password: "",
-      phoneNum: "",
-     
+      phone_num: "",
     });
   }
 
@@ -100,28 +95,28 @@ export default class AddCustomer extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="first_name">First Name</label>
               <input
                 type="text"
                 className="form-control"
-                id="firstName"
+                id="first_name"
                 required
-                value={this.state.firstName}
+                value={this.state.first_name}
                 onChange={this.onChangeFirstName}
-                name="firstName"
+                name="first_name"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="last_name">Last Name</label>
               <input
                 type="text"
                 className="form-control"
-                id="lastName"
+                id="last_name"
                 required
-                value={this.state.lastName}
+                value={this.state.last_name}
                 onChange={this.onChangeLastName}
-                name="lastName"
+                name="last_name"
               />
             </div>
             <div className="form-group">
@@ -137,15 +132,15 @@ export default class AddCustomer extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phoneNum">Phone Number</label>
+              <label htmlFor="phone_num">Phone Number</label>
               <input
                 type="text"
                 className="form-control"
-                id="phoneNum"
+                id="phone_num"
                 required
-                value={this.state.phoneNum}
+                value={this.state.phone_num}
                 onChange={this.onChangePhoneNum}
-                name="phoneNum"
+                name="phone_num"
               />
             </div>
             <div className="form-group">

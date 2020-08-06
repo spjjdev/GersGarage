@@ -14,7 +14,7 @@ class SuppliesDataService {
   }
 
   create(data) {
-    return http.post("/add-supplies", data);
+    return http.post("/add-supply", data);
   }
 
   update(supplies_id, data) {
