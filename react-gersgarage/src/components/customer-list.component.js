@@ -152,8 +152,13 @@ export default class CustomerList extends Component {
                 </label>{" "}
                 {currentCustomer.email}
               </div>
-
-              
+              <Link
+                to={"/customers/" + currentCustomer.email}
+                className="badge badge-warning"
+              >
+                Edit
+              </Link>
+             
             </div>
           ) : (
             <div>

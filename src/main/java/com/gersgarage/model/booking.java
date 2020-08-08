@@ -8,7 +8,7 @@ public class booking {
 
 	// pk
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "booking_id")
 	private Long booking_id;
 	// foreign key references mechanic (id)

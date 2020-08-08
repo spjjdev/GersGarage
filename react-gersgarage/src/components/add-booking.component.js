@@ -64,6 +64,7 @@ export default class AddBooking extends Component {
           mechanic: response.data.mechanic.mechanic_id,
           type: response.data.type.booking_type_id,
           vehicle: response.data.vehicle.reg,
+          submitted: true
         });
         console.log(response.data);
       })
@@ -79,6 +80,7 @@ export default class AddBooking extends Component {
       type: "",
       mechanic: "",
       vehicle: "",
+      submitted: false
     });
   }
 
@@ -114,6 +116,7 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="timedate"
                 required
+                placeholder="hh:mm, dd/mm/yy"
                 value={this.state.timedate}
                 onChange={this.onChangeTimedate}
                 name="timedate"

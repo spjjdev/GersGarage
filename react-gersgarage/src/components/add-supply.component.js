@@ -50,6 +50,7 @@ export default class AddSupply extends Component {
           supplies_name: response.data.supplies_name,
           price: response.data.price,
           quantity: response.data.quantity,
+          submitted: true
       
         });
         console.log(response.data);
@@ -64,6 +65,7 @@ export default class AddSupply extends Component {
       supplies_name: " ",
       quantity: " ",
       price: " ",
+      submitted: false
      
     });
   }

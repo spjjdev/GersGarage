@@ -1,6 +1,7 @@
 package com.gersgarage.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gersgarage.gersgarage.ResourceNotFoundException;
 import com.gersgarage.model.*;
 import com.gersgarage.repository.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*") 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api") // custom naming
 public class GersgarageController {
@@ -43,7 +45,7 @@ public class GersgarageController {
 	}
 
 	// get customers
-	
+
 //	@CrossOrigin(origins = "http://localhost:8081/customers")
 	@GetMapping("/customers")
 	public List<customer> getAllCustomers() {
@@ -70,7 +72,17 @@ public class GersgarageController {
 	}
 
 	// update customer PUT
+	@PutMapping("/customers/{email}")
+	public String updateCustomer(@PathVariable(value = "email") String email, String first_name, String last_name,
+			String password, String phone_num, @RequestBody customer customer) {
+		customer.setFirst_name(first_name);
+		customer.setLast_name(last_name);
+		customer.setPassword(password);
+		customer.setPhone_num(phone_num);
+		customer.setEmail(email);
 
+		return "customer updated";
+	}
 	// delete customer DELETE
 
 	// add vehicle POST
@@ -84,6 +96,7 @@ public class GersgarageController {
 	public List<booking> getBookings() {
 		return this.bookingRepository.findAll();
 	}
+
 	@GetMapping("/bookings/{booking_id}")
 	public ResponseEntity<booking> getBookingById(@PathVariable(value = "booking_id") Long booking_id)
 			throws ResourceNotFoundException {
@@ -91,6 +104,7 @@ public class GersgarageController {
 				.orElseThrow(() -> new ResourceNotFoundException("Booking not found for this ID" + booking_id));
 		return ResponseEntity.ok().body(booking);
 	}
+
 	@PostMapping("/add-booking")
 	public String addBooking(@RequestBody booking booking) {
 		bookingRepository.save(booking);
@@ -104,10 +118,24 @@ public class GersgarageController {
 ////	}
 //	
 	// assign mechanic to booking, ger PUT info into booking
-	@PutMapping("assign-mechanic")
-	public void assignMechanic() {
-		// retrieve a customer booking and put a mechanic in the mechanic attribute
-	}
+//	@PutMapping("/assign-mechanic/{booking_i}")
+
+//	public void assignMechanic() {
+	@PutMapping("/bookings/{booking_id}")
+//	public ResponseEntity<booking> assignMechanic( @PathVariable(value = "booking_id")Long booking_id, Long mechanic_id)
+//		
+//	booking booking =
+//		
+//		return booking;
+//}
+//	 @RequestMapping(value = "/bookings/{booking_id}", method = RequestMethod.PUT)
+//	public String assignMehcanic(@PathVariable Long booking_id) throws ResourceNotFoundException{
+//	  ResponseEntity<booking> booking = getBookingById(booking_id);
+//	   booking.
+//	    //code
+//	return null;
+
+	// retrieve a customer booking and put a mechanic in the mechanic attribute
 
 	// list of supplies for customer to buy, GET supplies table
 
@@ -119,10 +147,18 @@ public class GersgarageController {
 		return allBookingType;
 	}
 
-	@GetMapping("/invoices")
+	@GetMapping("/invoice")
 	public List<invoice> getAllInvoices() {
 		List<invoice> allInvoices = this.invoiceRepository.findAll();
 		return allInvoices;
+	}
+
+	@GetMapping("/invoice/{invoice_id}")
+	public ResponseEntity<invoice> getInvoiceById(@PathVariable(value = "invoice_id") Long invoice_id)
+			throws ResourceNotFoundException {
+		invoice invoice = invoiceRepository.findById(invoice_id)
+				.orElseThrow(() -> new ResourceNotFoundException("invoice not found for this ID" + invoice_id));
+		return ResponseEntity.ok().body(invoice);
 	}
 
 	@GetMapping("/mechanics")
@@ -135,7 +171,7 @@ public class GersgarageController {
 	public List<supplies> getSupplies() {
 		List<supplies> allSupplies = this.suppliesRepository.findAll();
 		return allSupplies;
-		
+
 	}
 
 	@PostMapping("/add-supply")
@@ -143,7 +179,7 @@ public class GersgarageController {
 		suppliesRepository.save(supplies);
 		return supplies + "is added  to supply list";
 	}
-	
+
 	@GetMapping("/vehicles")
 	public List<vehicle> getVehicle() {
 		List<vehicle> allVehicles = this.vehicleRepository.findAll();

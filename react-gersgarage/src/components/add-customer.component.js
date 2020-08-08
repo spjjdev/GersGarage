@@ -64,6 +64,7 @@ export default class AddCustomer extends Component {
           last_name: response.data.last_name,
           password: response.data.password,
           phone_num: response.data.phone_num,
+          submitted: true
         });
         console.log(response.data);
       })
@@ -79,6 +80,7 @@ export default class AddCustomer extends Component {
       last_name: "",
       password: "",
       phone_num: "",
+      submitted: false
     });
   }
 

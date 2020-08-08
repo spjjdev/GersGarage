@@ -16,6 +16,7 @@ import AddVehicle from "./components/add-vehicle.component";
 import SuppliesList from "./components/supplies-list.component"
 import AddSupply from "./components/add-supply.component"
 import MechanicList from "./components/mechanic-list.component"
+import InvoiceList from "./components/invoice-list.component"
 
 class App extends Component {
   render() {
@@ -77,6 +78,11 @@ class App extends Component {
                   Mechanics
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to={"/invoice"} className="nav-link">
+                  Invoices
+                </Link>
+              </li>
             </div>
           </nav>
 
@@ -88,7 +94,7 @@ class App extends Component {
                 component={CustomerList}
               />
               <Route exact path="/add-customer" component={AddCustomer} />
-              <Route path="/customer/{email}" component={Customer} />
+              <Route path="/customers/{email}" component={Customer} />
               <Route path="/bookings/{booking_id}" component={Booking} />
               <Route exact path={"/bookings"} component={BookingList} />
               <Route exact path="/add-booking" component={AddBooking} />
@@ -97,6 +103,7 @@ class App extends Component {
               <Route exact path={"/supplies"} component={SuppliesList} />
               <Route exact path="/add-supply" component={AddSupply} />
               <Route exact path={"/mechanics"} component={MechanicList} />
+              <Route exact path={"/invoice"} component={InvoiceList} />
             </Switch>
           </div>
         </div>

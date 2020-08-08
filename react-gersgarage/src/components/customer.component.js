@@ -14,12 +14,15 @@ export default class Customer extends Component {
     this.deleteCustomer = this.deleteCustomer.bind(this);
     
     this.state = {
+      currentCustomer:{
         firstName: "",
         lastName: "",
         password: "",
         phoneNum: "",
         email: "",
-      };
+      },
+      message: ""
+    };
   }
 
   componentDidMount() {
@@ -135,7 +138,7 @@ export default class Customer extends Component {
                   type="text"
                   className="form-control"
                   id="firstName"
-                  value={currentCustomer.firstName}
+                  value={currentCustomer.first_name}
                   onChange={this.onChangeFirstName}
                 />
               </div>
@@ -145,7 +148,7 @@ export default class Customer extends Component {
                   type="text"
                   className="form-control"
                   id="lastName"
-                  value={currentCustomer.lastName}
+                  value={currentCustomer.last_name}
                   onChange={this.onChangeLastName}
                 />
               </div>
@@ -165,7 +168,7 @@ export default class Customer extends Component {
                   type="text"
                   className="form-control"
                   id="lastName"
-                  value={currentCustomer.phoneNum}
+                  value={currentCustomer.phone_num}
                   onChange={this.onChangePhoneNum}
                 />
               </div>

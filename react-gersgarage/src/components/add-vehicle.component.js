@@ -21,7 +21,7 @@ export default class AddVehicle extends Component {
       reg: " ",
       owner: " ",
       engine: " ",
-      submitted: false,
+     
     };
   }
   onChangeMake(e) {
@@ -93,13 +93,13 @@ export default class AddVehicle extends Component {
       reg: " ",
       owner: " ",
       engine: " ",
+      submitted: false
     });
   }
 
   render() {
     return (
       <div className="submit-form">
-        {/* submitted doesnt exist */}
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>

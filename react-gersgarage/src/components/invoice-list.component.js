@@ -12,8 +12,8 @@ export default class InvoiceList extends Component {
     this.searchInvoiceId = this.searchInvoiceId.bind(this);
 
     this.state = {
-      customer: [],
-      currentCustomer: null,
+      invoice: [],
+      currentInvoice: null,
       currentIndex: -1,
       searchInvoiceId: "",
     };
@@ -109,7 +109,7 @@ export default class InvoiceList extends Component {
 
           <ul className="list-group">
             {invoice &&
-              invoice.map((customer, index) => (
+              invoice.map((invoice, index) => (
                 <li
                   className={
                     "list-group-item " +
@@ -118,7 +118,7 @@ export default class InvoiceList extends Component {
                   onClick={() => this.setActiveInvoice(invoice, index)}
                   key={index}
                 >
-                  {invoice.invoice_id +" "+invoice.invoice_id}
+                  {invoice.invoice_id }
                 </li>
               ))}
           </ul>
