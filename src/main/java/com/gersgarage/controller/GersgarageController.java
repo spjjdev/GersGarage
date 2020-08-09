@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,19 +72,16 @@ public class GersgarageController {
 		return customer + "is registered to Ger's Garage";
 	}
 
-	// update customer PUT
-	@PutMapping("/customers/{email}")
-	public String updateCustomer(@PathVariable(value = "email") String email, String first_name, String last_name,
-			String password, String phone_num, @RequestBody customer customer) {
-		customer.setFirst_name(first_name);
-		customer.setLast_name(last_name);
-		customer.setPassword(password);
-		customer.setPhone_num(phone_num);
-		customer.setEmail(email);
-
-		return "customer updated";
-	}
 	// delete customer DELETE
+	@DeleteMapping("/customers/{email}")
+	public String deleteCustomer(@RequestBody customer customer) {
+		this.customerRepository.delete(customer);
+
+		return "customer deleted";
+	}
+	
+	// update customer PUT
+	
 
 	// add vehicle POST
 	@PostMapping("add-vehicle")

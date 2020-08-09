@@ -15,10 +15,10 @@ export default class AddBooking extends Component {
 
     this.state = {
       //   bookingId: " ",
-      timedate: " ",
-      mechanic: " ",
-      type: " ",
-      vehicle: " ",
+      timedate: "",
+      mechanic: "",
+      type: "",
+      vehicle: "",
     };
   }
   //   onChangeBookingId(e) {
@@ -61,9 +61,9 @@ export default class AddBooking extends Component {
         this.setState({
           //   bookingId: response.data.bookingId,
           timedate: response.data.timedate,
-          mechanic: response.data.mechanic.mechanic_id,
-          type: response.data.type.booking_type_id,
-          vehicle: response.data.vehicle.reg,
+          mechanic: response.data.mechanic,
+          type: response.data.type,
+          vehicle: response.data.vehicle,
           submitted: true,
         });
         console.log(response.data);

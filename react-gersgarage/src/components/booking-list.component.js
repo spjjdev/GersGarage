@@ -164,7 +164,7 @@ export default class BookingList extends Component {
               </div>
 
               <Link
-                to={"/bookings/" + currentBooking.bookingId}
+                to={"/bookings/" + currentBooking.booking_id}
                 className="badge badge-warning"
               >
                 Edit

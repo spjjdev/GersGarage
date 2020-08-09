@@ -26,6 +26,7 @@ import InvoiceList from "./components/invoice-list.component";
 import CarMake from "./components/carMake.component";
 import Home from "./components/home";
 
+
 // const fakeAuth = {
 //   isAuthenticated: false,
 //   authenticated(cb) {
@@ -82,99 +83,122 @@ import Home from "./components/home";
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div>
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <a href="/home" className="navbar-brand">
-              Ger's Garage
-            </a>
-            <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/customers"} className="nav-link">
-                  Customers
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/add-customer"} className="nav-link">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/bookings"} className="nav-link">
-                  Bookings
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/add-booking"} className="nav-link">
-                  Make A Booking
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/vehicles"} className="nav-link">
-                  Vehicles
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/add-vehicle"} className="nav-link">
-                  Add Vehicle
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/supplies"} className="nav-link">
-                  Supplies
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/add-supply"} className="nav-link">
-                  Add Supply
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/"} className="nav-link">
-                  Assign Mechanic
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/mechanics"} className="nav-link">
-                  Mechanics
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/invoice"} className="nav-link">
-                  Invoices
-                </Link>
-              </li>
-            </div>
-          </nav>
+      // <AuthContext.Provider value={true}>
+        <Router>
+          <div>
+            <nav className="navbar navbar-expand navbar-dark bg-dark">
+              <a href="/home" className="navbar-brand">
+                Ger's Garage
+              </a>
+              <div className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link to={"/customers"} className="nav-link">
+                    Customers
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/add-customer"} className="nav-link">
+                    Register
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/bookings"} className="nav-link">
+                    Bookings
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/add-booking"} className="nav-link">
+                    Make A Booking
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/vehicles"} className="nav-link">
+                    Vehicles
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/add-vehicle"} className="nav-link">
+                    Add Vehicle
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/supplies"} className="nav-link">
+                    Supplies
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/add-supply"} className="nav-link">
+                    Add Supply
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/"} className="nav-link">
+                    Assign Mechanic
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/mechanics"} className="nav-link">
+                    Mechanics
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/invoice"} className="nav-link">
+                    Invoices
+                  </Link>
+                </li>
+              </div>
+            </nav>
 
-          <div className="container mt-3">
-            <Switch>
-              <Route
-                exact
-                path={["/", "/customers"]}
-                component={CustomerList}
-              />
-              <Route exact path="/add-customer" component={AddCustomer} />
-              <Route path="/customers/:email" component={Customer} />
-              <Route path="/bookings/{booking_id}" component={Booking} />
-              <Route exact path={"/bookings"} component={BookingList} />
-              <Route exact path="/add-booking" component={AddBooking} />
-              <Route exact path={"/vehicles"} component={VehicleList} />
-              <Route exact path="/add-vehicle" component={AddVehicle} />
-              <Route exact path={"/supplies"} component={SuppliesList} />
-              <Route exact path="/add-supply" component={AddSupply} />
-              <Route
-                exact
-                path={"/mechanics"}
-                component={MechanicList}
-              />
-              <Route exact path={"/invoice"} component={InvoiceList} />
-              <Route path="/home" component={Home} />
-              {/* <Route path="/login" component={Login} /> */}
-            </Switch>
+            <div className="container mt-3">
+              <Switch>
+                <Route
+                  exact
+                  path="/customers"
+                  component={CustomerList}
+                />
+                <Route exact path="/add-customer" component={AddCustomer} />
+                <Route path="/customers/:email" component={Customer} />
+                <Route
+                  path="/bookings/:id"
+                  component={Booking}
+                />
+                <Route
+                  exact
+                  path={"/bookings"}
+                  component={BookingList}
+                />
+                <Route
+                  exact
+                  path="/add-booking"
+                  component={AddBooking}
+                />
+                <Route
+                  exact
+                  path={"/vehicles"}
+                  component={VehicleList}
+                />
+                <Route
+                  exact
+                  path="/add-vehicle"
+                  component={AddVehicle}
+                />
+                <Route exact path={"/supplies"} component={SuppliesList} />
+                <Route exact path="/add-supply" component={AddSupply} />
+                <Route
+                  exact
+                  path={"/mechanics"}
+                  component={MechanicList}
+                />
+                <Route exact path={"/invoice"} component={InvoiceList} />
+                <Route path={[ "/customers"]} component={Home} />
+                {/* <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} /> */}
+                {/* <Route path="/login" component={Login} /> */}
+              </Switch>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      // </AuthContext.Provider>
     );
   }
 }

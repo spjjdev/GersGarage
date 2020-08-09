@@ -157,7 +157,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="mechanic"
-                  value={currentBooking.mechanic}
+                  value={currentBooking.mechanic.first_name}
                   onChange={this.onChangeMechanic}
                 />
               </div>
@@ -167,7 +167,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="bookingType"
-                  value={currentBooking.type}
+                  value={currentBooking.type.description}
                   onChange={this.onChangeBookingType}
                 />
               </div>
@@ -177,7 +177,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="vehicle"
-                  value={currentBooking.vehicle}
+                  value={currentBooking.vehicle.reg}
                   onChange={this.onChangeVehicle}
                 />
               </div>

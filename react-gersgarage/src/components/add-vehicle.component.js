@@ -16,12 +16,13 @@ export default class AddVehicle extends Component {
     this.newVehicle = this.newVehicle.bind(this);
 
     this.state = {
-      make: " ",
-      model: " ",
-      colour: " ",
-      reg: " ",
-      owner: " ",
-      engine: " ",
+      make: "",
+      model: "",
+      colour: "",
+      reg: "",
+      owner: "",
+      engine: "",
+      submitted: false,
       // MakeData: [],
     };
   }
@@ -63,7 +64,7 @@ export default class AddVehicle extends Component {
   }
   onChangeEngine(e) {
     this.setState({
-      engineType: e.target.value,
+      engine: e.target.value,
     });
   }
 
@@ -85,7 +86,7 @@ export default class AddVehicle extends Component {
           model: response.data.model,
           colour: response.data.colour,
           reg: response.data.reg,
-          owner: response.data.owner.email,
+          owner: response.data.owner,
           engineType: response.data.engine,
           submitted: true,
         });
@@ -97,12 +98,12 @@ export default class AddVehicle extends Component {
 
   newVehicle() {
     this.state({
-      make: " ",
-      model: " ",
-      colour: " ",
-      reg: " ",
-      owner: " ",
-      engine: " ",
+      make: "",
+      model: "",
+      colour: "",
+      reg: "",
+      owner: "",
+      engine: "",
       submitted: false,
     });
   }
