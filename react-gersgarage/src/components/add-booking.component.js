@@ -64,7 +64,7 @@ export default class AddBooking extends Component {
           mechanic: response.data.mechanic.mechanic_id,
           type: response.data.type.booking_type_id,
           vehicle: response.data.vehicle.reg,
-          submitted: true
+          submitted: true,
         });
         console.log(response.data);
       })
@@ -80,7 +80,7 @@ export default class AddBooking extends Component {
       type: "",
       mechanic: "",
       vehicle: "",
-      submitted: false
+      submitted: false,
     });
   }
 

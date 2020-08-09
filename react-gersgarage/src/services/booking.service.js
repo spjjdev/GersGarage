@@ -10,7 +10,7 @@ class BookingDataService {
   }
 
   create(data) {
-    return http.post("/add-customer", data);
+    return http.post("/add-booking", data);
   }
 
   update(booking_id, data) {

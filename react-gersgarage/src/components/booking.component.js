@@ -14,14 +14,16 @@ export default class Booking extends Component {
     this.deleteBooking = this.deleteBooking.bind(this);
 
     this.state = {
+      currentCustomer:{
       firstName: "",
       lastName: "",
       password: "",
       phoneNum: "",
       email: "",
-    };
-  }
-
+    },
+    message: ""
+  };
+}
   componentDidMount() {
     this.getBooking(this.props.match.params.id);
   }
@@ -29,25 +31,16 @@ export default class Booking extends Component {
   onChangeBookingId(e) {
     const bookingId = e.target.value;
 
-    this.setState((prevState) => ({
+    this.setState(function(prevState){
+      return{
       currentBooking: {
         ...prevState.currentBooking,
         bookingId: bookingId,
-      },
-    }));
+      }
+    };
+  });
   }
-  getBooking(bookingId) {
-    BookingDataService.get(bookingId)
-      .then(response => {
-        this.setState({
-          currentBooking: response.data
-        });
-        console.log(response.data);
-      })
-      .catch(e => { 
-        console.log(e);
-      });
-  }
+ 
   onChangeTimeDate(e) {
     const timeDate = e.target.value;
 
@@ -90,7 +83,18 @@ export default class Booking extends Component {
       },
     }));
   }
-
+  getBooking(bookingId) {
+    BookingDataService.get(bookingId)
+      .then(response => {
+        this.setState({
+          currentBooking: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => { 
+        console.log(e);
+      });
+  }
   updateBooking() {
     BookingDataService.update(
       this.state.currentBooking.id,
@@ -133,7 +137,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="bookingId"
-                  value={currentBooking.bookingId}
+                  value={currentBooking.booking_id}
                   onChange={this.onChangeBookingId}
                 />
               </div>
@@ -143,7 +147,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="timeDate"
-                  value={currentBooking.timeDate}
+                  value={currentBooking.timedate}
                   onChange={this.onChangeTimeDate}
                 />
               </div>
@@ -163,8 +167,8 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="bookingType"
-                  value={currentBooking.bookingType}
-                  onChange={this.onChangeBookinType}
+                  value={currentBooking.type}
+                  onChange={this.onChangeBookingType}
                 />
               </div>
               <div className="form-group">
@@ -181,7 +185,7 @@ export default class Booking extends Component {
 
             <button
               className="badge badge-danger mr-2"
-              onClick={this.deleteCustomer}
+              onClick={this.deleteBooking}
             >
               Delete
             </button>
@@ -189,7 +193,7 @@ export default class Booking extends Component {
             <button
               type="submit"
               className="badge badge-success"
-              onClick={this.updateCustomer}
+              onClick={this.updateBooking}
             >
               Update
             </button>

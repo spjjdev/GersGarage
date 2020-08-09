@@ -1,6 +1,7 @@
 // code from https://bezkoder.com/react-crud-web-api/
 import React, { Component } from "react";
 import VehicleDataService from "../services/vehicle.service";
+import axios from "axios";
 
 export default class AddVehicle extends Component {
   constructor(props) {
@@ -21,9 +22,19 @@ export default class AddVehicle extends Component {
       reg: " ",
       owner: " ",
       engine: " ",
-     
+      // MakeData: [],
     };
   }
+  // componentDidMount() {
+  //   axios
+  //     .get("http://api.edmunds.com/api/vehicle/v2/makes")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       this.setState({
+  //         MakeData: response.data,
+  //       });
+  //     });
+  // }
   onChangeMake(e) {
     this.setState({
       make: e.target.value,
@@ -76,9 +87,8 @@ export default class AddVehicle extends Component {
           reg: response.data.reg,
           owner: response.data.owner.email,
           engineType: response.data.engine,
-          submitted: true
+          submitted: true,
         });
-        
       })
       .catch((e) => {
         console.log(e);
@@ -93,7 +103,7 @@ export default class AddVehicle extends Component {
       reg: " ",
       owner: " ",
       engine: " ",
-      submitted: false
+      submitted: false,
     });
   }
 
@@ -109,6 +119,23 @@ export default class AddVehicle extends Component {
           </div>
         ) : (
           <div>
+            {/* <div className="form-group dropdn">
+              <select
+                className="form-control"
+                name="make"
+                value={this.state.make}
+                // onChange={this.ChangeteState}
+              >
+                <option>Select Make</option>
+                {this.state.MakeData.map((e, key) => {
+                  return (
+                    <option key={key} value={e.make}>
+                      {e.MakeName}
+                    </option>
+                  );
+                })}
+              </select>{" "}
+            </div> */}
             <div className="form-group">
               <label htmlFor="make">Make</label>
               <input
