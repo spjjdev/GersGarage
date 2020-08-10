@@ -57,6 +57,7 @@ export default class InvoiceList extends Component {
       currentInvoice: invoice,
       currentIndex: index,
     });
+    console.log ("invoice")
   }
 
   searchInvoiceId() {
@@ -144,7 +145,7 @@ export default class InvoiceList extends Component {
                 <label>
                   <strong>Booking:</strong>
                 </label>{" "}
-                {currentInvoice.booking}
+                {currentInvoice.booking.booking_id}
               </div>
               
 

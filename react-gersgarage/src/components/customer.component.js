@@ -15,10 +15,10 @@ export default class Customer extends Component {
     
     this.state = {
       currentCustomer:{
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         password: "",
-        phoneNum: "",
+        phone_num: "",
         email: "",
       },
       message: ""
@@ -42,22 +42,22 @@ export default class Customer extends Component {
     });
   }
   onChangeFirstName(e) {
-    const firstName = e.target.value;
+    const first_name = e.target.value;
     
     this.setState(prevState => ({
       currentCustomer: {
         ...prevState.currentCustomer,
-        firstName : firstName
+        first_name : first_name
       }
     }));
   }
   onChangeLastName(e) {
-    const lastName = e.target.value;
+    const last_name = e.target.value;
     
     this.setState(prevState => ({
       currentCustomer: {
         ...prevState.currentCustomer,
-        lastName : lastName
+        last_name : last_name
       }
     }));
   }
@@ -72,12 +72,12 @@ export default class Customer extends Component {
     }));
   }
   onChangePhoneNum(e) {
-    const phoneNum = e.target.value;
+    const phone_num = e.target.value;
     
     this.setState(prevState => ({
       currentCustomer: {
         ...prevState.currentCustomer,
-        phoneNum : phoneNum
+        phone_num : phone_num
       }
     }));
   }

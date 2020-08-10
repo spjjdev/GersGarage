@@ -29,6 +29,8 @@ public class customer {
 
 	@Column(name = "phone_num")
 	private String phone_num;
+	
+	
 
 	
 	

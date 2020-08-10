@@ -1,5 +1,6 @@
 package com.gersgarage.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class supplies {
 	private Long price;
 
 	@ManyToMany(mappedBy = "invoiceSupplies")
-	Set<invoice> suppliesInvoice;
+	Set<invoice> suppliesInvoice = new HashSet<>();
 
 	public supplies() {
 		super();

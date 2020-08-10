@@ -1,10 +1,13 @@
 package com.gersgarage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +48,7 @@ public class GersgarageController {
 		return "Hello World";
 	}
 
-	// get customers
+	// endpoints from https://www.youtube.com/watch?v=eWbGV3LLwVQ
 
 //	@CrossOrigin(origins = "http://localhost:8081/customers")
 	@GetMapping("/customers")
@@ -74,19 +77,41 @@ public class GersgarageController {
 
 	// delete customer DELETE
 	@DeleteMapping("/customers/{email}")
-	public String deleteCustomer(@RequestBody customer customer) {
+	public Map<String, Boolean> deleteCustomer(@PathVariable(value = "email") String email)
+			throws ResourceNotFoundException {
+		customer customer = customerRepository.findById(email)
+				.orElseThrow(() -> new ResourceNotFoundException("Customer not found for this email" + email));
 		this.customerRepository.delete(customer);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
 
-		return "customer deleted";
+		return response;
+
 	}
-	
+
 	// update customer PUT
-	
+	@GetMapping("/vehicles")
+	public List<vehicle> getVehicle() {
+		List<vehicle> allVehicles = this.vehicleRepository.findAll();
+		return allVehicles;
+	}
 
 	// add vehicle POST
 	@PostMapping("add-vehicle")
 	public void addVehicle(@RequestBody vehicle vehicle) {
 		vehicleRepository.save(vehicle);
+	}
+	@DeleteMapping("/vehicles/{reg}")
+	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "reg") String reg)
+			throws ResourceNotFoundException {
+		vehicle vehicle = vehicleRepository.findById(reg)
+				.orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for this registration" + reg));
+		this.vehicleRepository.delete(vehicle);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+
+		return response;
+
 	}
 
 	// get list of bookings GET
@@ -109,11 +134,31 @@ public class GersgarageController {
 		return booking + "is registered to Ger's Garage";
 	}
 
-	// booking POST customer details with vechicle details
-////	@PostMapping("/booking")
-////	public void addBooking (@RequestBody booking booking) {
-////		bookingRepository.save(booking);
-////	}
+	@PutMapping("/booking/{booking_id}")
+	public ResponseEntity<booking> assignMechanic(@PathVariable(value = "booking_id") Long booking_id,
+			@Validated @RequestBody booking bookingDetails) throws ResourceNotFoundException {
+		booking booking = bookingRepository.findById(booking_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Booking not found for this ID" + booking_id));
+		booking.setMechanic(bookingDetails.getMechanic());
+		booking.setTimedate(bookingDetails.getTimedate());
+		booking.setType(bookingDetails.getType());
+		booking.setVehicle(bookingDetails.getVehicle());
+
+		return ResponseEntity.ok().body(booking);
+	}
+
+	@DeleteMapping("/booking/{booking_id}")
+	public Map<String, Boolean> deleteBooking(@PathVariable(value = "booking_id") Long booking_id)
+			throws ResourceNotFoundException {
+		booking booking = bookingRepository.findById(booking_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Booking not found for this ID" + booking_id));
+		this.bookingRepository.delete(booking);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+
+		return response;
+
+	}
 //	
 	// assign mechanic to booking, ger PUT info into booking
 //	@PutMapping("/assign-mechanic/{booking_i}")
@@ -159,6 +204,19 @@ public class GersgarageController {
 		return ResponseEntity.ok().body(invoice);
 	}
 
+	@DeleteMapping("/invoice/{invoice_id}")
+	public Map<String, Boolean> deleteInvoice(@PathVariable(value = "invoice_id") Long invoice_id)
+			throws ResourceNotFoundException {
+		invoice invoice = invoiceRepository.findById(invoice_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Invoice not found for this email" + invoice_id));
+		this.invoiceRepository.delete(invoice);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+
+		return response;
+
+	}
+
 	@GetMapping("/mechanics")
 	public List<mechanic> getMechanics() {
 		List<mechanic> allMechanics = this.mechanicRepository.findAll();
@@ -178,10 +236,17 @@ public class GersgarageController {
 		return supplies + "is added  to supply list";
 	}
 
-	@GetMapping("/vehicles")
-	public List<vehicle> getVehicle() {
-		List<vehicle> allVehicles = this.vehicleRepository.findAll();
-		return allVehicles;
+	@DeleteMapping("/supplies/{supplies_id}")
+	public Map<String, Boolean> deletesupply(@PathVariable(value = "supplies_id") Long supplies_id)
+			throws ResourceNotFoundException {
+		supplies supplies = suppliesRepository.findById(supplies_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Item not found for this ID" + supplies_id));
+		this.suppliesRepository.delete(supplies);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+
+		return response;
+
 	}
 
 }

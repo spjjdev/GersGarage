@@ -14,12 +14,12 @@ export default class Booking extends Component {
     this.deleteBooking = this.deleteBooking.bind(this);
 
     this.state = {
-      currentCustomer:{
-      firstName: "",
-      lastName: "",
-      password: "",
-      phoneNum: "",
-      email: "",
+      currentBooking:{
+      booking_id: "",
+      timedate: "",
+      mechanic: "",
+      type: "",
+      vehicle: "",
     },
     message: ""
   };
@@ -29,26 +29,26 @@ export default class Booking extends Component {
   }
 
   onChangeBookingId(e) {
-    const bookingId = e.target.value;
+    const booking_id = e.target.value;
 
     this.setState(function(prevState){
       return{
       currentBooking: {
         ...prevState.currentBooking,
-        bookingId: bookingId,
+        booking_id: booking_id,
       }
     };
   });
   }
  
   onChangeTimeDate(e) {
-    const timeDate = e.target.value;
+    const timedate = e.target.value;
 
     this.setState(function (prevState) {
       return {
         currentBooking: {
           ...prevState.currentBooking,
-          timeDate: timeDate,
+          timedate: timedate,
         },
       };
     });
@@ -64,12 +64,12 @@ export default class Booking extends Component {
     }));
   }
   onChangeBookingType(e) {
-    const bookingType = e.target.value;
+    const type = e.target.value;
 
     this.setState((prevState) => ({
       currentBooking: {
         ...prevState.currentBooking,
-        bookingType: bookingType,
+        type: type,
       },
     }));
   }
@@ -83,8 +83,8 @@ export default class Booking extends Component {
       },
     }));
   }
-  getBooking(bookingId) {
-    BookingDataService.get(bookingId)
+  getBooking(booking_id) {
+    BookingDataService.get(booking_id)
       .then(response => {
         this.setState({
           currentBooking: response.data
@@ -97,7 +97,7 @@ export default class Booking extends Component {
   }
   updateBooking() {
     BookingDataService.update(
-      this.state.currentBooking.id,
+      this.state.currentBooking.booking_id,
       this.state.currentBooking
     )
       .then((response) => {
@@ -112,7 +112,7 @@ export default class Booking extends Component {
   }
 
   deleteBooking() {
-    BookingDataService.delete(this.state.currentBooking.bookingId)
+    BookingDataService.delete(this.state.currentBooking.booking_id)
       .then((response) => {
         console.log(response.data);
         this.props.history.push("/bookings");
@@ -126,27 +126,28 @@ export default class Booking extends Component {
     const { currentBooking } = this.state;
 
     return (
+      
       <div>
         {currentBooking ? (
           <div className="edit-form">
             <h4>Booking</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="bookingId">Booking ID</label>
+                <label htmlFor="booking_id">Booking ID</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="bookingId"
+                  id="booking_id"
                   value={currentBooking.booking_id}
                   onChange={this.onChangeBookingId}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="timeDate">Time/Date</label>
+                <label htmlFor="timedate">Time/Date</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="timeDate"
+                  id="timedate"
                   value={currentBooking.timedate}
                   onChange={this.onChangeTimeDate}
                 />
@@ -162,11 +163,11 @@ export default class Booking extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="bookingType">Booking Type</label>
+                <label htmlFor="type">Booking Type</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="bookingType"
+                  id="type"
                   value={currentBooking.type.description}
                   onChange={this.onChangeBookingType}
                 />

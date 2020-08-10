@@ -25,6 +25,7 @@ import MechanicList from "./components/mechanic-list.component";
 import InvoiceList from "./components/invoice-list.component";
 import CarMake from "./components/carMake.component";
 import Home from "./components/home";
+import Vehicle from "./components/vehicle.component"
 
 
 // const fakeAuth = {
@@ -161,6 +162,10 @@ class App extends Component {
                 <Route
                   path="/bookings/:id"
                   component={Booking}
+                />
+                 <Route
+                  path="/vehicles/:reg"
+                  component={Vehicle}
                 />
                 <Route
                   exact

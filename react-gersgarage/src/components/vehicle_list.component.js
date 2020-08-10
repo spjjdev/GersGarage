@@ -166,7 +166,12 @@ export default class VehicleList extends Component {
                 {currentVehicle.owner.email}
               </div>
 
-              
+              <Link
+                to={"/vehicles/" + currentVehicle.reg}
+                className="badge badge-warning"
+              >
+                Edit
+              </Link>
             </div>
           ) : (
             <div>
