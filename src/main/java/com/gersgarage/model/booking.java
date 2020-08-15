@@ -9,15 +9,16 @@ public class booking {
 	// pk
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(columnDefinition = "serial",name = "booking_id")
+	@Column(columnDefinition = "serial", name = "booking_id")
 	private Long booking_id;
+
 	// foreign key references mechanic (id)
 	@OneToOne
 	@JoinColumn(name = "mechanic_id")
 	private mechanic mechanic;
 
 	// foreign key references vehicle (id)
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "reg")
 	private vehicle vehicle;
 
@@ -25,7 +26,7 @@ public class booking {
 	private String timedate;
 
 	// foreign key references booking_type (id)
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "booking_type_id")
 	private booking_type type;
 

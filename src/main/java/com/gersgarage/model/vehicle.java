@@ -2,7 +2,6 @@ package com.gersgarage.model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "vehicle")
 public class vehicle {

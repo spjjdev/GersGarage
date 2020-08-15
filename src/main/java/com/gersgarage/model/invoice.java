@@ -1,6 +1,6 @@
 package com.gersgarage.model;
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.*;
@@ -19,11 +19,6 @@ public class invoice {
 	@JoinTable(name = "invoice_supplies", joinColumns = @JoinColumn(name = "invoice_id"),
 	inverseJoinColumns = @JoinColumn(name = "supplies_id"))
 	Set<supplies> invoiceSupplies;
-
-//	// fk to supplies(id)
-//	@OneToMany
-//	@JoinColumn(name = "supplies_id")
-//	private Long supplies;
 
 	// fk to booking
 	@OneToOne
