@@ -84,26 +84,7 @@ export default class BookingList extends Component {
 
     return (
       <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by Booking ID"
-              value={searchBookingId}
-              onChange={this.onChangeSearchBookingId}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchBookingId}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
+        
 
         <div className="col-md-6">
           <h4>Booking List</h4>

@@ -97,7 +97,7 @@ export default class AddVehicle extends Component {
   }
 
   newVehicle() {
-    this.state({
+    this.setState({
       make: "",
       model: "",
       colour: "",

@@ -129,6 +129,7 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="mechanic_id"
                 required
+                placeholder="enter mechanic ID (1-5)"
                 value={this.state.mechanic.mechanic_id}
                 onChange={this.onChangeMechanic}
                 name="timedate"
@@ -141,6 +142,7 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="booking_type_id"
                 required
+                placeholder="enter booking type ID (1-4)"
                 value={this.state.type.booking_type_id}
                 onChange={this.onChangeType}
                 name="booking_type_id"
@@ -153,6 +155,7 @@ export default class AddBooking extends Component {
                 className="form-control"
                 id="reg"
                 required
+                placeholder="enter registration"
                 value={this.state.vehicle.reg}
                 onChange={this.onChangeVehicle}
                 name="reg"

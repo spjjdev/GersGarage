@@ -18,7 +18,7 @@ public class invoice {
 	@ManyToMany
 	@JoinTable(name = "invoice_supplies", joinColumns = @JoinColumn(name = "invoice_id"),
 	inverseJoinColumns = @JoinColumn(name = "supplies_id"))
-	Set<supplies> invoiceSupplies = new HashSet<>();
+	Set<supplies> invoiceSupplies;
 
 //	// fk to supplies(id)
 //	@OneToMany

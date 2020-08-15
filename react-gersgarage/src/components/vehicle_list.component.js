@@ -83,26 +83,8 @@ export default class VehicleList extends Component {
 
     return (
       <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by Registration"
-              value={searchReg}
-              onChange={this.onChangeSearchReg}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchReg}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
+        
+        
 
         <div className="col-md-6">
           <h4>Vehicle List</h4>
@@ -163,7 +145,7 @@ export default class VehicleList extends Component {
                 <label>
                   <strong>Owner:</strong>
                 </label>{" "}
-                {currentVehicle.owner.email}
+                {currentVehicle.owner.first_name + " " +currentVehicle.owner.last_name}
               </div>
 
               <Link

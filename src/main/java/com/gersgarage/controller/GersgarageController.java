@@ -67,14 +67,18 @@ public class GersgarageController {
 		return ResponseEntity.ok().body(customer);
 	}
 
-	// add customer to DB, customer does this on registration
-//	@CrossOrigin(origins = "http://localhost:8081/add-customer")
-	@PostMapping("/add-customer")
-	public String addCustomer(@RequestBody customer customer) {
-		customerRepository.save(customer);
-		return customer + "is registered to Ger's Garage";
+	@PutMapping("/customers/{email}")
+	public void updateCustomer(@PathVariable(value = "email") String email, String first_name, String last_name,
+			String password, String phone_num) 
+		throws ResourceNotFoundException {
+			customer customer = customerRepository.findById(email).orElseThrow(() -> new ResourceNotFoundException("Customer not found for this email" + email));
+			this.customerRepository.delete(customer);
+			customer.setEmail(email);
+			customer.setFirst_name(first_name);
+			customer.setLast_name(last_name);
+			customer.setPassword(password);
+			customer.setPhone_num(phone_num);
 	}
-
 	// delete customer DELETE
 	@DeleteMapping("/customers/{email}")
 	public Map<String, Boolean> deleteCustomer(@PathVariable(value = "email") String email)
@@ -89,7 +93,14 @@ public class GersgarageController {
 
 	}
 
-	// update customer PUT
+	// add customer to DB, customer does this on registration
+//	@CrossOrigin(origins = "http://localhost:8081/add-customer")
+	@PostMapping("/add-customer")
+	public String addCustomer(@RequestBody customer customer) {
+		customerRepository.save(customer);
+		return customer + "is registered to Ger's Garage";
+	}
+
 	@GetMapping("/vehicles")
 	public List<vehicle> getVehicle() {
 		List<vehicle> allVehicles = this.vehicleRepository.findAll();
@@ -101,6 +112,15 @@ public class GersgarageController {
 	public void addVehicle(@RequestBody vehicle vehicle) {
 		vehicleRepository.save(vehicle);
 	}
+
+	@GetMapping("/vehicles/{reg}")
+	public ResponseEntity<vehicle> getVehicleById(@PathVariable(value = "reg") String reg)
+			throws ResourceNotFoundException {
+		vehicle vehicle = vehicleRepository.findById(reg)
+				.orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for this registration" + reg));
+		return ResponseEntity.ok().body(vehicle);
+	}
+
 	@DeleteMapping("/vehicles/{reg}")
 	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "reg") String reg)
 			throws ResourceNotFoundException {
@@ -134,7 +154,7 @@ public class GersgarageController {
 		return booking + "is registered to Ger's Garage";
 	}
 
-	@PutMapping("/booking/{booking_id}")
+	@PutMapping("/bookings/{booking_id}")
 	public ResponseEntity<booking> assignMechanic(@PathVariable(value = "booking_id") Long booking_id,
 			@Validated @RequestBody booking bookingDetails) throws ResourceNotFoundException {
 		booking booking = bookingRepository.findById(booking_id)
@@ -147,7 +167,7 @@ public class GersgarageController {
 		return ResponseEntity.ok().body(booking);
 	}
 
-	@DeleteMapping("/booking/{booking_id}")
+	@DeleteMapping("/bookings/{booking_id}")
 	public Map<String, Boolean> deleteBooking(@PathVariable(value = "booking_id") Long booking_id)
 			throws ResourceNotFoundException {
 		booking booking = bookingRepository.findById(booking_id)
@@ -160,31 +180,8 @@ public class GersgarageController {
 
 	}
 //	
-	// assign mechanic to booking, ger PUT info into booking
-//	@PutMapping("/assign-mechanic/{booking_i}")
 
-//	public void assignMechanic() {
-	@PutMapping("/bookings/{booking_id}")
-//	public ResponseEntity<booking> assignMechanic( @PathVariable(value = "booking_id")Long booking_id, Long mechanic_id)
-//		
-//	booking booking =
-//		
-//		return booking;
-//}
-//	 @RequestMapping(value = "/bookings/{booking_id}", method = RequestMethod.PUT)
-//	public String assignMehcanic(@PathVariable Long booking_id) throws ResourceNotFoundException{
-//	  ResponseEntity<booking> booking = getBookingById(booking_id);
-//	   booking.
-//	    //code
-//	return null;
-
-	// retrieve a customer booking and put a mechanic in the mechanic attribute
-
-	// list of supplies for customer to buy, GET supplies table
-
-	// invoice creation from ger, add booking and supplies needed, PUT?
-
-	@GetMapping("/bookingType")
+	@GetMapping("/booking-type")
 	public List<booking_type> getBookingType() {
 		List<booking_type> allBookingType = this.bookingTypeRepository.findAll();
 		return allBookingType;

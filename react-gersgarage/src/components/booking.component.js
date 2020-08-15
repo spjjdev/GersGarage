@@ -158,7 +158,7 @@ export default class Booking extends Component {
                   type="text"
                   className="form-control"
                   id="mechanic"
-                  value={currentBooking.mechanic.first_name}
+                  value={currentBooking.mechanic.mechanic_id}
                   onChange={this.onChangeMechanic}
                 />
               </div>

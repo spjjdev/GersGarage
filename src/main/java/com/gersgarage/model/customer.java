@@ -1,5 +1,8 @@
 package com.gersgarage.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.NaturalId;
@@ -15,7 +18,8 @@ public class customer {
 	@Id
 	@NaturalId
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, name = "email")
+	
+	@Column( nullable = false, name = "email")
 	private String email;
 
 	@Column(name = "first_name")
@@ -29,6 +33,9 @@ public class customer {
 
 	@Column(name = "phone_num")
 	private String phone_num;
+	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy="email") 
+//	private List<vehicle> vehicles = new ArrayList<>();
 	
 	
 

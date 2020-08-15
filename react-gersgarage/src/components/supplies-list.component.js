@@ -83,27 +83,7 @@ export default class SuppliesList extends Component {
 
     return (
       <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by Supply ID"
-              value={searchSuppliesId}
-              onChange={this.onChangeSearchSuppliesId}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchSuppliesId}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
-
+     
         <div className="col-md-6">
           <h4>Supplies List</h4>
 

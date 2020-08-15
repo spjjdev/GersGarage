@@ -7,5 +7,4 @@ import com.gersgarage.model.customer;
 
 @Repository
 public interface customerRepository extends JpaRepository <customer, String>{
-
 }
